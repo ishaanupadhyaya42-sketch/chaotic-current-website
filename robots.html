@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" class="js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Robots | Chaotic Current FTC 21438</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<nav class="topnav">
+  <div class="wrap navwrap">
+    <a href="index.html" class="brand">
+      <img src="assets/logo.png" alt="">
+      <div>
+        <div class="bt">Chaotic Current</div>
+        <div class="bs">FTC 21438</div>
+      </div>
+    </a>
+    <button class="navtoggle" id="navToggle" aria-label="Toggle menu">&#9776;</button>
+    <div class="navlinks" id="navLinks">
+      <a href="index.html" class="navlink">Home</a>
+      <a href="team.html" class="navlink">Meet the Team</a>
+      <a href="robots.html" class="navlink active">Robots</a>
+      <a href="sponsors.html" class="navlink">Sponsors &amp; Donate</a>
+    </div>
+  </div>
+</nav>
+
+<header class="pagehead" style="background-image:linear-gradient(100deg,rgba(36,13,79,.96) 0%,rgba(46,16,101,.88) 28%,rgba(58,20,120,.55) 55%,rgba(76,29,149,.4) 100%), url('assets/headers/robots.jpg')">
+  <div class="wrap">
+    <div class="eyebrow reveal">The machines</div>
+    <h1 class="reveal">Designed, built, and coded in house.</h1>
+    <p class="reveal">Two robots this season, Patriot and Stinger, each built for a different role in our strategy.</p>
+    <a class="btn reveal" href="assets/documents/engineering-portfolio.pdf" target="_blank" rel="noopener">View Engineering Portfolio (PDF)</a>
+  </div>
+</header>
+
+<!-- ===================== PATRIOT ===================== -->
+<section id="patriot">
+  <div class="wrap">
+    <div class="robot-block">
+      <div class="tag-solid reveal">Robot 01</div>
+      <div class="robot">
+        <div class="reveal">
+          <h3>Patriot</h3>
+          <div class="rseason">2025&ndash;26 Competition Season</div>
+          <p>Patriot is our rapid-fire scorer, built around a dual-flywheel launcher tuned for consistency over raw speed. After early vision instability, we swapped to a Logitech C920 for reliable AprilTag detection, redesigned the outtake ramp for uniform ball positioning and exit angles, and moved to a 1:1 flywheel gear ratio to hold torque under load. A second motor and third flywheel added complexity but eliminated firing delays entirely.</p>
+          <div class="spec"><span>Drivetrain</span><span>Mecanum, GoBILDA</span></div>
+          <div class="spec"><span>Scoring system</span><span>Dual-flywheel launcher, 1:1 gear ratio</span></div>
+          <div class="spec"><span>Vision</span><span>Logitech C920, AprilTag detection</span></div>
+          <div class="spec"><span>Odometry / IMU</span><span>GoBILDA odometry, REV 9-axis IMU</span></div>
+          <div class="spec"><span>Chassis</span><span>ACM composite walls</span></div>
+        </div>
+        <div class="reveal">
+          <div class="robot-photo-wrap">
+            <div class="explodedphoto">
+              <img src="assets/robots/patriot-ep.webp" alt="Patriot labeled parts diagram and exploded view" width="900" height="1050" loading="lazy" decoding="async" draggable="false">
+            </div>
+            <div class="phototag"><span>Patriot</span><span>V1.0</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== STINGER ===================== -->
+    <div class="robot-block">
+      <div class="tag-solid reveal">Robot 02</div>
+      <div class="robot">
+        <div class="reveal">
+          <h3>Stinger</h3>
+          <div class="rseason">2025&ndash;26 Competition Season</div>
+          <p>Stinger is our current competition robot, built from scratch for speed, defense, and full-field range. A 3-section intake pulls in three balls at once through medium-compression REV silicon wheels, funnels them past goBILDA rubber gears, and fires them off two flexible 72mm flywheels stabilized by Swyft inertia weights through a 3D-printed hood angled at 35 degrees. Impact-resistant ACM composite walls protect the electronics without the weight penalty of aluminum, which matters with defense allowed on the field this season.</p>
+          <div class="spec"><span>Drivetrain</span><span>Mecanum, belt-driven front wheels</span></div>
+          <div class="spec"><span>Intake</span><span>3-section REV silicon wheel system, 3-ball capacity</span></div>
+          <div class="spec"><span>Scoring system</span><span>Dual 72mm flywheels, Swyft inertia weights</span></div>
+          <div class="spec"><span>Vision</span><span>Logitech C920, AprilTag detection</span></div>
+          <div class="spec"><span>Chassis</span><span>ACM composite paneling</span></div>
+        </div>
+        <div class="reveal">
+          <div class="robot-photo-wrap">
+            <div class="explodedphoto">
+              <img src="assets/robots/stinger-ep.webp" alt="Stinger labeled parts diagram and exploded view" width="900" height="1050" loading="lazy" decoding="async" draggable="false">
+            </div>
+            <div class="phototag"><span>Stinger</span><span>V2.0</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <img src="assets/logo.png" alt="">
+      <div class="ft">Chaotic Current</div>
+    </div>
+    <div class="foot-meta">FTC Team 21438 &middot; Vista Ridge High School &middot; Cedar Park, Texas<br>
+    Sponsored by Firefly &amp; Qualcomm &middot; Competition data from <em>FIRST</em></div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

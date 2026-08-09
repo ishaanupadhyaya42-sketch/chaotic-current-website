@@ -1,0 +1,6 @@
+# local/stray files not part of the site
+_inspect_perf2.txt
+/logo.png
+Screenshot*.png
+desktop.ini
+Thumbs.db
