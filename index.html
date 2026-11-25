@@ -15,12 +15,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=20261125c">
+<link rel="stylesheet" href="css/style.css?v=20261125d">
 <link rel="preload" as="image" href="assets/photos/pit-1400.webp" imagesrcset="assets/photos/pit-800.webp 800w, assets/photos/pit-1400.webp 1400w, assets/photos/pit-2200.webp 2200w" imagesizes="100vw">
 <script>document.documentElement.classList.add('js')</script>
-<script src="js/main.js?v=20261125c" defer></script>
-<script src="js/ftcscout.js?v=20261125c" defer></script>
-<script src="js/portal.js?v=20261125c" defer></script>
+<script src="js/main.js?v=20261125d" defer></script>
+<script src="js/ftcscout.js?v=20261125d" defer></script>
+<script src="js/portal.js?v=20261125d" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -89,15 +89,18 @@
     <div class="wrap">
       <h2 class="sec__h">Record</h2>
 
-      <div class="live" data-ftcscout data-team="21438">
-        <div class="live__seasons" role="tablist" aria-label="Season"></div>
-        <div class="live__body" aria-live="polite">
-          <p class="live__line">Loading our results from FTCScout&hellip;</p>
-          <ol class="live__list"></ol>
-          <p class="live__awards" hidden></p>
+      <div class="live fs" data-ftcscout data-team="21438">
+        <div class="fs-top">
+          <div class="live__seasons" role="tablist" aria-label="Season"></div>
+          <a class="link fs-src" href="https://ftcscout.org/teams/21438" target="_blank" rel="noopener">Team 21438 on FTCScout &nearr;</a>
         </div>
-        <p class="live__fail live__line">FTCScout didn&rsquo;t answer just now.</p>
-        <a class="link live__src" href="https://ftcscout.org/teams/21438" target="_blank" rel="noopener">Full stats on FTCScout &nearr;</a>
+        <div class="live__body" aria-live="polite">
+          <div class="fs-scroll"><table class="fs-quick"><tbody><tr><td>Loading from FTCScout&hellip;</td></tr></tbody></table></div>
+          <div class="fs-events"></div>
+          <div class="fs-awards" hidden></div>
+        </div>
+        <p class="live__fail">FTCScout didn&rsquo;t answer just now. <a class="link" href="https://ftcscout.org/teams/21438" target="_blank" rel="noopener">See our results on FTCScout</a>.</p>
+        <p class="fs-credit">Data from <a class="link" href="https://ftcscout.org" target="_blank" rel="noopener">FTCScout</a>, updated as events are scored.</p>
       </div>
     </div>
   </section>
