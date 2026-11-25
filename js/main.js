@@ -39,7 +39,7 @@ requestAnimationFrame(() => requestAnimationFrame(() => {
 (() => {
   const root = document.querySelector('[data-scene]');
   if (!root) return;
-  const go = () => import(new URL('scene3d.js', SCRIPT_URL).href)
+  const go = () => import(new URL('scene3d.js' + new URL(SCRIPT_URL).search, SCRIPT_URL).href)
     .then((m) => m.mountScene(root))
     .catch(() => root.classList.add('is-failed'));
   // the robots sit at the bottom of the page: fetch three.js and the models only as the reader nears them
