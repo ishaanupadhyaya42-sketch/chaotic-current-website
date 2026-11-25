@@ -6,7 +6,7 @@
   const TEAM = +root.dataset.team;
   const API = 'https://api.ftcscout.org/graphql';
   const SITE = 'https://ftcscout.org';
-  const CACHE_KEY = 'ftcscout-' + TEAM;
+  const CACHE_KEY = 'ftcscout-v4-' + TEAM;
   const CACHE_MS = 10 * 60 * 1000;
 
   // FTC seasons are named by the year they start (2025 = 2025–26); a new one starts in September
@@ -19,6 +19,22 @@
   const label = (s) => `${s}–${String(s + 1).slice(2)}`;
   const fmtDate = (d) => new Date(d + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
   const ordinal = (n) => n + (['th', 'st', 'nd', 'rd'][(n % 100 - 20) % 10] || ['th', 'st', 'nd', 'rd'][n % 100] || 'th');
+
+  // matches are fetched per season when an event is opened: one season per request
+  const seasonMatches = {};
+  function loadMatches(season) {
+    if (!seasonMatches[season]) {
+      const q = `{ teamByNumber(number: ${TEAM}) { events(season: ${season}) { eventCode
+        matches { alliance match { matchNum series tournamentLevel hasBeenPlayed
+          scores { ... on MatchScores${season} { red { totalPoints } blue { totalPoints } } }
+          teams { teamNumber alliance team { name } } } } } } }`;
+      seasonMatches[season] = fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ query: q }) })
+        .then((r) => r.json())
+        .then((j) => Object.fromEntries(j.data.teamByNumber.events.map((e) => [e.eventCode, e.matches])))
+        .catch((err) => { delete seasonMatches[season]; throw err; });
+    }
+    return seasonMatches[season];
+  }
 
   function query(withStats) {
     const statsFrag = withStats
@@ -60,6 +76,25 @@
   const num = (n) => words[n] || String(n);
   const rec = (st) => `${st.wins}–${st.losses}${st.ties ? '–' + st.ties : ''}`;
 
+  const LEVEL = { Quals: 'Q', DoubleElim: 'Playoff ', Semis: 'Semi ', Finals: 'Final ' };
+  const teamName = (t) => esc(t.team ? t.team.name : String(t.teamNumber));
+
+  function matchLines(list) {
+    const played = (list || []).filter((m) => m.match && m.match.hasBeenPlayed && m.match.scores && m.match.scores.red);
+    if (!played.length) return '';
+    const order = (m) => (m.match.tournamentLevel === 'Quals' ? 0 : 1) * 1e4 + m.match.matchNum;
+    return played.sort((a, b) => order(a) - order(b)).map((m) => {
+      const x = m.match, us = m.alliance === 'Red' ? 'red' : 'blue', them = us === 'red' ? 'blue' : 'red';
+      const a = x.scores[us].totalPoints, b = x.scores[them].totalPoints;
+      const res = a > b ? 'Won' : a < b ? 'Lost' : 'Tied';
+      const partners = x.teams.filter((t) => t.alliance === m.alliance && t.teamNumber !== TEAM).map(teamName);
+      const opp = x.teams.filter((t) => t.alliance !== m.alliance).map(teamName);
+      return `<li class="is-${res.toLowerCase()}"><span class="live__m">${LEVEL[x.tournamentLevel] || ''}${x.matchNum}</span>`
+        + `<span class="live__res">${res} ${a}–${b}</span>`
+        + `<span class="live__who">${partners.length ? `with ${partners.join(', ')} ` : ''}<em>vs ${opp.join(', ')}</em></span></li>`;
+    }).join('');
+  }
+
   function render(d, i) {
     const s = seasons[i], q = d['q' + i], events = (d['e' + i] || []).slice(), awards = d['a' + i] || [];
     const today = now.toISOString().slice(0, 10);
@@ -91,10 +126,23 @@
 
     $('.live__list').innerHTML = rows.map((e) => {
       const st = e.stats, url = `${SITE}/events/${s}/${e.eventCode}`;
-      return `<li class="${st ? '' : 'is-upcoming'}"><time datetime="${e.event.start}">${fmtDate(e.event.start)}</time>`
-        + `<a href="${url}" target="_blank" rel="noopener">${esc(e.event.name)}</a>`
-        + `<span>${st ? `${ordinal(st.rank)} · ${rec(st)}` : 'Upcoming'}</span></li>`;
+      const head = `<time datetime="${e.event.start}">${fmtDate(e.event.start)}</time>`
+        + `<b>${esc(e.event.name)}</b>`
+        + `<span>${st ? `${ordinal(st.rank)} · ${rec(st)}` : 'Upcoming'}</span>`;
+      if (!st) return `<li class="${st ? '' : 'is-upcoming'}"><a class="live__row" href="${url}" target="_blank" rel="noopener">${head}</a></li>`;
+      return `<li><details data-season="${s}" data-event="${e.eventCode}"><summary class="live__row">${head}<i aria-hidden="true"></i></summary>`
+        + `<ol class="live__matches"><li class="live__wait">Loading matches&hellip;</li></ol>`
+        + `<a class="link live__ev" href="${url}" target="_blank" rel="noopener">This event on FTCScout &nearr;</a></details></li>`;
     }).join('');
+
+    root.querySelectorAll('.live__list details').forEach((det) => det.addEventListener('toggle', () => {
+      if (!det.open || det.dataset.loaded) return;
+      const ol = det.querySelector('.live__matches');
+      loadMatches(det.dataset.season).then((map) => {
+        det.dataset.loaded = '1';
+        ol.innerHTML = matchLines(map[det.dataset.event]) || '<li class="live__wait">No match scores posted.</li>';
+      }).catch(() => { ol.innerHTML = '<li class="live__wait">FTCScout didn&rsquo;t answer. Try again in a moment.</li>'; });
+    }));
 
     const aw = $('.live__awards');
     aw.hidden = !awards.length;
