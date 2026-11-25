@@ -1,0 +1,31 @@
+<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:transparent}</style>
+<!-- Renders a 1200x900 transparent poster of a model with the same camera as the site viewer.
+     Serve the site root, open /tools/viewer/poster.html?m=stinger&yaw=0.7 and the PNG is POSTed to /save (see README). -->
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script></head><body>
+<script type="module">
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+const q = new URLSearchParams(location.search), name = q.get('m'), yaw = +q.get('yaw'), pitch = 0.32, W = 1200, H = 900;
+const r = new THREE.WebGLRenderer({ antialias: true, alpha: true }); r.setPixelRatio(1); r.setSize(W, H);
+r.toneMapping = THREE.ACESFilmicToneMapping; r.toneMappingExposure = 1.05; r.outputColorSpace = THREE.SRGBColorSpace;
+document.body.appendChild(r.domElement);
+const s = new THREE.Scene(); const pm = new THREE.PMREMGenerator(r); s.environment = pm.fromScene(new RoomEnvironment(), 0.04).texture;
+const key = new THREE.DirectionalLight(0xffffff, 1.1); key.position.set(2, 4, 3); s.add(key);
+const cam = new THREE.PerspectiveCamera(28, W / H, 0.01, 50);
+const l = new GLTFLoader(); l.setMeshoptDecoder(MeshoptDecoder);
+l.load(`../../assets/models/${name}.glb`, (g) => {
+  const m = g.scene; m.rotation.x = -Math.PI / 2; m.updateMatrixWorld(true);
+  const b = new THREE.Box3().setFromObject(m), c = b.getCenter(new THREE.Vector3()), sz = b.getSize(new THREE.Vector3());
+  m.position.sub(c); s.add(m);
+  const cv = document.createElement('canvas'); cv.width = cv.height = 128; const x = cv.getContext('2d'), gr = x.createRadialGradient(64, 64, 4, 64, 64, 64);
+  gr.addColorStop(0, 'rgba(20,18,24,.42)'); gr.addColorStop(1, 'rgba(20,18,24,0)'); x.fillStyle = gr; x.fillRect(0, 0, 128, 128);
+  const rr = Math.max(sz.x, sz.z) * .95; const sh = new THREE.Mesh(new THREE.PlaneGeometry(rr * 1.9, rr * 1.9), new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(cv), transparent: true, depthWrite: false }));
+  sh.rotation.x = -Math.PI / 2; sh.position.y = -sz.y / 2 - .001; s.add(sh);
+  const d = sz.length() * 2.05, cp = Math.cos(pitch);
+  cam.position.set(Math.sin(yaw) * cp * d, Math.sin(pitch) * d, Math.cos(yaw) * cp * d); cam.lookAt(0, 0, 0);
+  r.render(s, cam);
+  r.domElement.toBlob(async (blob) => { const t = await (await fetch('/save?name=' + name + '-poster.png', { method: 'POST', body: blob })).text(); document.title = t; }, 'image/png');
+});
+</script></body></html>

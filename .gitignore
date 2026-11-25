@@ -4,3 +4,6 @@ _inspect_perf2.txt
 Screenshot*.png
 desktop.ini
 Thumbs.db
+.taste-skill/
+.playwright-mcp/
+tools/node_modules/

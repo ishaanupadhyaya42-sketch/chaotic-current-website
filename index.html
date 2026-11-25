@@ -1,100 +1,203 @@
-<!DOCTYPE html>
-<html lang="en" class="js">
+<!doctype html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chaotic Current | FTC 21438</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chaotic Current | FTC Team 21438, Cedar Park, Texas</title>
+<meta name="description" content="Chaotic Current is the FIRST Tech Challenge robotics team at Vista Ridge High School in Cedar Park, Texas. Second at the 2025-26 UIL 6A State Championship.">
+<meta name="theme-color" content="#eceef1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Chaotic Current | FTC Team 21438">
+<meta property="og:description" content="Student-built competition robots from Vista Ridge High School in Cedar Park, Texas.">
+<meta property="og:image" content="assets/photos/build-1400.webp">
+<link rel="icon" href="assets/logo-96.png">
+<link rel="apple-touch-icon" href="assets/logo-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/intro.css">
+<link rel="preload" as="image" href="assets/photos/build-1400.webp" imagesrcset="assets/photos/build-800.webp 800w, assets/photos/build-1400.webp 1400w, assets/photos/build-2200.webp 2200w" imagesizes="(min-width: 960px) 50vw, 100vw">
+<script>document.documentElement.classList.add('js')</script>
+<script src="js/main.js" defer></script>
 </head>
-<body style="--bgimg:url('assets/headers/sponsors.jpg');--bgtint:linear-gradient(rgba(3,2,7,.82),rgba(3,2,7,.82));--bgpos:top center">
+<body>
+<a class="skip" href="#main">Skip to content</a>
 
-<!-- ===================== INTRO ===================== -->
-<div id="intro">
-  <canvas id="bolts"></canvas>
-  <div id="introFlash"></div>
-  <div id="introLogo"><img src="assets/logo.png" alt="Chaotic Current"></div>
-</div>
-
-<!-- ===================== NAV ===================== -->
-<nav class="topnav">
-  <div class="wrap navwrap">
-    <a href="index.html" class="brand">
-      <img src="assets/logo.png" alt="">
-      <div>
-        <div class="bt">Chaotic Current</div>
-        <div class="bs">FTC 21438</div>
-      </div>
+<header class="nav">
+  <div class="wrap nav__in">
+    <a class="brand" href="index.html" aria-label="Chaotic Current home">
+      <img src="assets/logo-96.png" alt="" width="38" height="38">
+      <span><b>Chaotic Current</b><small>FTC 21438</small></span>
     </a>
-    <button class="navtoggle" id="navToggle" aria-label="Toggle menu">&#9776;</button>
-    <div class="navlinks" id="navLinks">
-      <a href="index.html" class="navlink active">Home</a>
-      <a href="team.html" class="navlink">Meet the Team</a>
-      <a href="robots.html" class="navlink">Robots</a>
-      <a href="sponsors.html" class="navlink">Sponsors &amp; Donate</a>
-    </div>
+    <button class="nav__toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu"><span></span></button>
+    <ul class="nav__links" id="nav-links">
+      <li><a href="robots.html">Robots</a></li>
+      <li><a href="team.html">Team</a></li>
+      <li><a href="sponsors.html">Sponsors</a></li>
+      <li><a class="btn" href="sponsors.html#donate">Donate</a></li>
+    </ul>
   </div>
-</nav>
-
-<!-- ===================== HERO ===================== -->
-<header class="hero">
-  <div class="heroglow"></div>
-  <div class="wrap">
-    <h1 class="reveal">Chaotic Current<br> | <span class="accent">21438</span></h1>
-    <p class="hero-sub reveal">A student led FIRST&reg; Tech Challenge robotics team from Vista Ridge High School in Cedar Park, Texas.</p>
-  </div>
-  <div class="scrollcue">Scroll</div>
 </header>
 
-<!-- ===================== MISSION ===================== -->
-<section id="about">
-  <div class="wrap">
-    <div class="eyebrow reveal">Who we are</div>
-    <div class="statement reveal">Rookies in 2022. <em>Still proving it, three seasons later.</em></div>
-    <div class="body-cols">
-      <p class="reveal">Today we compete at the highest level of the <strong>FIRST&reg; Tech Challenge</strong>, finishing <strong>second at the FIRST in Texas UIL 6A State Championship</strong>, the largest and most competitive division in the state, where we served as <strong>Finalist Alliance Captain</strong> with a perfect qualification record. Along the way we earned the <strong>Design Award</strong> and climbed into the <strong>top four percent of teams worldwide</strong>.</p>
-      <p class="reveal">But the trophies are only part of the story. Every mechanism, every line of code, and every strategy call is made by students, and the real work is what happens between competitions. We mentor <strong>Stiles Middle School's</strong> new FTC and FLL teams, and have brought STEM and robot-building lessons to <strong>Reagan Elementary</strong>, reaching over <strong>75 new FTC/FLL members</strong> and <strong>450 students</strong> in our community.</p>
-    </div>
-  </div>
-  <div class="marquee">
-    <div class="marquee-track" id="marqueeTrack">
-      <img src="assets/gallery/gallery-01.jpg" alt="Chaotic Current team photo" loading="lazy">
-      <img src="assets/gallery/gallery-02.jpg" alt="Chaotic Current team photo" loading="lazy">
-      <img src="assets/gallery/gallery-03.jpg" alt="Chaotic Current team photo" loading="lazy">
-      <img src="assets/gallery/gallery-04.jpg" alt="Chaotic Current team photo" loading="lazy">
-      <img src="assets/gallery/gallery-05.jpg" alt="Chaotic Current team photo" loading="lazy">
-      <img src="assets/gallery/gallery-06.jpg" alt="Chaotic Current team photo" loading="lazy">
-      <img src="assets/gallery/gallery-07.jpg" alt="Chaotic Current team photo" loading="lazy">
-      <img src="assets/gallery/gallery-08.jpg" alt="Chaotic Current team photo" loading="lazy">
-      <img src="assets/gallery/gallery-09.jpg" alt="Chaotic Current team photo" loading="lazy">
-      <img src="assets/gallery/gallery-10.jpg" alt="Chaotic Current team photo" loading="lazy">
-      <img src="assets/gallery/gallery-11.jpg" alt="Chaotic Current team photo" loading="lazy">
-      <img src="assets/gallery/gallery-12.jpg" alt="Chaotic Current team photo" loading="lazy">
-      <img src="assets/gallery/gallery-13.jpg" alt="Chaotic Current team photo" loading="lazy">
-      <img src="assets/gallery/gallery-14.jpg" alt="Chaotic Current team photo" loading="lazy">
-      <img src="assets/gallery/gallery-15.jpg" alt="Chaotic Current team photo" loading="lazy">
-      <img src="assets/gallery/gallery-16.jpg" alt="Chaotic Current team photo" loading="lazy">
-      <img src="assets/gallery/gallery-17.jpg" alt="Chaotic Current team photo" loading="lazy">
-      <img src="assets/gallery/gallery-18.jpg" alt="Chaotic Current team photo" loading="lazy">
-    </div>
-  </div>
-</section>
+<main id="main">
 
-<footer>
-  <div class="wrap">
-    <div class="foot-top">
-      <img src="assets/logo.png" alt="">
-      <div class="ft">Chaotic Current</div>
+  <section class="hero">
+    <div class="wrap hero__grid">
+      <div class="hero__text" data-enter>
+        <p class="label">FIRST&reg; Tech Challenge &middot; Team 21438</p>
+        <h1>Student-built robots from Cedar Park, Texas</h1>
+        <p class="lead">Chaotic Current is the FTC team at Vista Ridge High School. Students design, build, wire and code every robot, and this season we finished second at the UIL 6A State Championship.</p>
+        <div class="hero__acts">
+          <a class="btn" href="robots.html">See the robots <span class="arr" aria-hidden="true">&rarr;</span></a>
+          <a class="btn btn--ghost" href="team.html">Meet the team</a>
+        </div>
+      </div>
+      <div class="ph hero__pic" data-enter-pic>
+        <img src="assets/photos/build-1400.webp"
+             srcset="assets/photos/build-800.webp 800w, assets/photos/build-1400.webp 1400w, assets/photos/build-2200.webp 2200w"
+             sizes="(min-width: 960px) 50vw, 100vw" alt="A team member leans into the robot to adjust the flywheel launcher in the pits" width="1400" height="933" fetchpriority="high">
+      </div>
     </div>
-    <div class="foot-meta">FTC Team 21438 &middot; Vista Ridge High School &middot; Cedar Park, Texas<br>
-    Sponsored by Firefly &amp; Qualcomm &middot; Competition data from <em>FIRST</em></div>
+    <div class="wrap">
+      <div class="facts">
+        <div><b>2nd</b><span>UIL 6A State Championship, as Finalist Alliance Captain</span></div>
+        <div><b>Top 4%</b><span>of FIRST Tech Challenge teams worldwide</span></div>
+        <div><b>450</b><span>students reached through our outreach in Cedar Park</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec--alt" id="record">
+    <div class="wrap">
+      <div class="sec__head sec__head--split">
+        <div>
+          <p class="label">Since 2022</p>
+          <h2 style="margin-top:16px">Our record, three seasons in</h2>
+        </div>
+        <p class="lead">We started as a rookie team in 2022. This season we went undefeated in qualification matches at state and reached the final.</p>
+      </div>
+      <div class="results__grid">
+        <dl class="sheet">
+          <div class="sheet__row"><dt>2nd at state</dt><dd>FIRST in Texas UIL 6A State Championship, the largest division in the state. We captained the finalist alliance.</dd></div>
+          <div class="sheet__row"><dt>Perfect qualification</dt><dd>Every qualification match won at the state championship.</dd></div>
+          <div class="sheet__row"><dt>Design Award</dt><dd>Judged award for the design of our robot.</dd></div>
+          <div class="sheet__row"><dt>Top 4% worldwide</dt><dd>Ranked among the top four percent of FIRST Tech Challenge teams.</dd></div>
+        </dl>
+        <div class="ph ph--hover">
+          <img src="assets/photos/medals-800.webp" srcset="assets/photos/medals-800.webp 800w, assets/photos/medals-1400.webp 1400w"
+               sizes="(min-width: 960px) 40vw, 100vw" alt="Team members hold up their state championship medals in front of the FIRST backdrop" width="800" height="498" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="stinger">
+    <div class="wrap">
+      <div class="sec__head">
+        <p class="label">Robot 02 &middot; current</p>
+        <h2>Stinger, our competition robot</h2>
+      </div>
+      <div class="feature">
+        <div class="viewer" data-viewer data-model="assets/models/stinger-lite.glb" data-yaw="0.7" tabindex="0" aria-label="Interactive 3D model of Stinger. Use the left and right arrow keys to turn it.">
+          <div class="viewer__stage">
+            <img class="viewer__poster" src="assets/models/stinger-poster.webp" srcset="assets/models/stinger-poster-600.webp 600w, assets/models/stinger-poster.webp 1200w" sizes="(min-width: 960px) 55vw, 100vw" alt="3D render of Stinger" width="1200" height="900" loading="lazy" decoding="async">
+          </div>
+          <div class="viewer__bar">
+            <span class="viewer__hint" data-status data-idle="Drag to turn"></span>
+            <div class="viewer__btns">
+              <button type="button" data-view="front">Front</button>
+              <button type="button" data-view="side">Side</button>
+              <button type="button" data-view="top">Top</button>
+              <button type="button" data-act="spin" aria-pressed="true">Pause spin</button>
+            </div>
+          </div>
+        </div>
+        <div class="feature__text">
+          <p class="prose">Built from scratch for speed, defense and full-field range. A three-section intake pulls in three balls at once and feeds two 72&nbsp;mm flywheels through a 3D-printed hood set at 35&deg;.</p>
+          <dl class="specs">
+            <div><dt>Drivetrain</dt><dd>Mecanum, belt-driven front wheels</dd></div>
+            <div><dt>Launcher</dt><dd>Dual 72&nbsp;mm flywheels, Swyft inertia weights</dd></div>
+            <div><dt>Chassis</dt><dd>ACM composite panels</dd></div>
+          </dl>
+          <a class="btn btn--ghost" href="robots.html">Compare both robots <span class="arr" aria-hidden="true">&rarr;</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec--alt" id="outreach">
+    <div class="wrap reach">
+      <div class="reach__text">
+        <div>
+          <p class="label">Outreach</p>
+          <h2 style="margin-top:16px">Teaching robotics in our district</h2>
+        </div>
+        <div class="prose">
+          <p>We mentor the new FTC and FLL teams at <strong>Stiles Middle School</strong> and run STEM and robot-building lessons at <strong>Reagan Elementary</strong>.</p>
+          <p>Every mechanism, line of code and strategy call on our own robot is made by students, and we teach younger students to work the same way.</p>
+        </div>
+        <div class="reach__nums">
+          <div><b>450</b><span>students reached in our community</span></div>
+          <div><b>75</b><span>new FTC and FLL team members</span></div>
+        </div>
+      </div>
+      <div class="reach__pics">
+        <div class="ph ph--hover"><img src="assets/gallery/gallery-10.jpg" srcset="assets/gallery/gallery-10-360.webp 360w, assets/gallery/gallery-10.jpg 720w" sizes="(min-width: 960px) 45vw, 100vw" alt="Team members show a robot to a classroom of elementary students" width="720" height="540" loading="lazy" decoding="async"></div>
+        <div class="ph ph--hover"><img src="assets/gallery/gallery-09.jpg" srcset="assets/gallery/gallery-09-360.webp 360w, assets/gallery/gallery-09.jpg 405w" sizes="(min-width: 960px) 22vw, 50vw" alt="A team member speaks to younger students seated on a classroom floor" width="405" height="540" loading="lazy" decoding="async"></div>
+        <div class="ph ph--hover"><img src="assets/gallery/gallery-08.jpg" srcset="assets/gallery/gallery-08-360.webp 360w, assets/gallery/gallery-08.jpg 720w" sizes="(min-width: 960px) 22vw, 50vw" alt="A mentor and children build a kit together at a classroom table" width="720" height="540" loading="lazy" decoding="async"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="season">
+    <div class="wrap">
+      <div class="sec__head">
+        <p class="label">Competition days</p>
+        <h2>From the pits to the field</h2>
+      </div>
+      <div class="wall">
+        <div class="ph ph--hover w4 h2"><img src="assets/photos/pit-1400.webp" srcset="assets/photos/pit-800.webp 800w, assets/photos/pit-1400.webp 1400w" sizes="(min-width: 760px) 66vw, 100vw" alt="The team crowds around the robot in the pit tent" width="1400" height="933" loading="lazy" decoding="async"></div>
+        <div class="ph ph--hover w2"><img src="assets/photos/drivers-800.webp" srcset="assets/photos/drivers-420.webp 420w, assets/photos/drivers-800.webp 800w" sizes="(min-width: 760px) 33vw, 50vw" alt="Drivers watch the match timer at the field edge as the referee looks on" width="800" height="533" loading="lazy" decoding="async"></div>
+        <div class="ph ph--hover w2"><img src="assets/photos/crowd-800.webp" srcset="assets/photos/crowd-420.webp 420w, assets/photos/crowd-800.webp 800w" sizes="(min-width: 760px) 33vw, 50vw" alt="Teammates in the stands with purple pom-poms and a Chaotic Current sign" width="800" height="533" loading="lazy" decoding="async"></div>
+        <div class="ph ph--hover w3 h2"><img src="assets/photos/match-1400.webp" srcset="assets/photos/match-800.webp 800w, assets/photos/match-1400.webp 1400w" sizes="(min-width: 760px) 50vw, 50vw" alt="Drive team at the field during a match with game balls on the floor" width="1400" height="933" loading="lazy" decoding="async"></div>
+        <div class="ph ph--hover w3 h2"><img src="assets/photos/lineup-1400.webp" srcset="assets/photos/lineup-800.webp 800w, assets/photos/lineup-1400.webp 1400w" sizes="(min-width: 760px) 50vw, 50vw" alt="The full team lined up behind both robots" width="1400" height="933" loading="lazy" decoding="async"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec--ink on-ink" id="support">
+    <div class="wrap close">
+      <h2>Help fund next season&rsquo;s robot</h2>
+      <div>
+        <p class="lead" style="margin-bottom:24px">Donations pay for parts, competition fees and travel. Sponsors get their logo on our website, booth and robot.</p>
+        <div class="close__acts">
+          <a class="btn" href="sponsors.html#donate">Donate to the team</a>
+          <a class="btn btn--ghost" href="sponsors.html#tiers">See sponsor tiers</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="bignum" aria-hidden="true">214<span>38</span></div>
+    <div class="foot__top">
+      <div class="foot__brand"><img src="assets/logo-96.png" alt="" width="48" height="48" loading="lazy"><div><b>Chaotic Current</b>FTC Team 21438 &middot; Vista Ridge High School, Cedar Park, Texas</div></div>
+      <ul>
+        <li><a href="robots.html">Robots</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="sponsors.html">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="assets/documents/engineering-portfolio.pdf" target="_blank" rel="noopener">Engineering portfolio (PDF)</a></li>
+        <li><a href="mailto:vrhsengineeringclub@gmail.com">Email the team</a></li>
+        <li><a href="sponsors.html#donate">Donate</a></li>
+      </ul>
+    </div>
+    <div class="foot__legal"><span>&copy; <span data-year>2026</span> Chaotic Current, FTC Team 21438</span><span>Sponsored by Firefly Aerospace and Qualcomm</span></div>
   </div>
 </footer>
-
-<script src="js/main.js"></script>
-<script src="js/intro.js"></script>
 </body>
 </html>

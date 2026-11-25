@@ -1,123 +1,136 @@
-<!DOCTYPE html>
-<html lang="en" class="js">
+<!doctype html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Meet the Team | Chaotic Current FTC 21438</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Team | Chaotic Current FTC 21438</title>
+<meta name="description" content="The students of FTC team 21438 Chaotic Current at Vista Ridge High School: who runs hardware, software, wiring, outreach and media.">
+<meta name="theme-color" content="#eceef1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The team | Chaotic Current FTC 21438">
+<meta property="og:description" content="Students run every part of the team, from design and code to outreach and media.">
+<meta property="og:image" content="assets/photos/crowd-1400.webp">
+<link rel="icon" href="assets/logo-96.png">
+<link rel="apple-touch-icon" href="assets/logo-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<script>document.documentElement.classList.add('js')</script>
+<script src="js/main.js" defer></script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
-<!-- ===================== NAV ===================== -->
-<nav class="topnav">
-  <div class="wrap navwrap">
-    <a href="index.html" class="brand">
-      <img src="assets/logo.png" alt="">
-      <div>
-        <div class="bt">Chaotic Current</div>
-        <div class="bs">FTC 21438</div>
-      </div>
+<header class="nav">
+  <div class="wrap nav__in">
+    <a class="brand" href="index.html" aria-label="Chaotic Current home">
+      <img src="assets/logo-96.png" alt="" width="38" height="38">
+      <span><b>Chaotic Current</b><small>FTC 21438</small></span>
     </a>
-    <button class="navtoggle" id="navToggle" aria-label="Toggle menu">&#9776;</button>
-    <div class="navlinks" id="navLinks">
-      <a href="index.html" class="navlink">Home</a>
-      <a href="team.html" class="navlink active">Meet the Team</a>
-      <a href="robots.html" class="navlink">Robots</a>
-      <a href="sponsors.html" class="navlink">Sponsors &amp; Donate</a>
-    </div>
-  </div>
-</nav>
-
-<header class="pagehead" style="background-image:linear-gradient(100deg,rgba(36,13,79,.96) 0%,rgba(46,16,101,.88) 28%,rgba(58,20,120,.55) 55%,rgba(76,29,149,.4) 100%), url('assets/headers/team.jpg')">
-  <div class="wrap">
-    <div class="eyebrow reveal">The team</div>
-    <h1 class="reveal">The people behind Chaotic.</h1>
-    <p class="reveal">Fifteen students running every part of the program, from design and code to outreach and media.</p>
+    <button class="nav__toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu"><span></span></button>
+    <ul class="nav__links" id="nav-links">
+      <li><a href="robots.html">Robots</a></li>
+      <li><a href="team.html" aria-current="page">Team</a></li>
+      <li><a href="sponsors.html">Sponsors</a></li>
+      <li><a class="btn" href="sponsors.html#donate">Donate</a></li>
+    </ul>
   </div>
 </header>
 
-<!-- ===================== TEAM ===================== -->
-<section id="roster">
-  <div class="wrap">
-    <div class="teamgrid">
-      <div class="membercard reveal">
-        <div class="avatar"><img src="assets/team/anjan.jpg" alt="Anjan" loading="lazy"><span class="role-tag">Captain</span></div>
-        <div class="mname">Anjan</div>
-      </div>
-      <div class="membercard reveal">
-        <div class="avatar"><img src="assets/team/advaith.jpg" alt="Advaith" loading="lazy"><span class="role-tag">Team Ops Lead</span></div>
-        <div class="mname">Advaith</div>
-      </div>
-      <div class="membercard reveal">
-        <div class="avatar"><img src="assets/team/kaveri.jpg" alt="Kaveri" loading="lazy"><span class="role-tag">Marketing Lead</span></div>
-        <div class="mname">Kaveri</div>
-      </div>
-      <div class="membercard reveal">
-        <div class="avatar"><img src="assets/team/yash.jpg" alt="Yash" loading="lazy"><span class="role-tag">Hardware Lead</span></div>
-        <div class="mname">Yash</div>
-      </div>
-      <div class="membercard reveal">
-        <div class="avatar"><img src="assets/team/azmeel.jpg" alt="Azmeel" loading="lazy"><span class="role-tag">Wiring &amp; Social Media Manager</span></div>
-        <div class="mname">Azmeel</div>
-      </div>
-      <div class="membercard reveal">
-        <div class="avatar"><img src="assets/team/ishaan.jpg" alt="Ishaan" loading="lazy"><span class="role-tag">Wiring &amp; Web Developer</span></div>
-        <div class="mname">Ishaan</div>
-      </div>
-      <div class="membercard reveal">
-        <div class="avatar"><img src="assets/team/aarya.jpg" alt="Aarya" loading="lazy"><span class="role-tag">Poster/Portfolio Developer</span></div>
-        <div class="mname">Aarya</div>
-      </div>
-      <div class="membercard reveal">
-        <div class="avatar"><img src="assets/team/ryan.jpg" alt="Ryan" loading="lazy"><span class="role-tag">Software Specialist</span></div>
-        <div class="mname">Ryan</div>
-      </div>
-      <div class="membercard reveal">
-        <div class="avatar"><span class="initials">SI</span><span class="role-tag">Hardware</span></div>
-        <div class="mname">Siya</div>
-      </div>
-      <div class="membercard reveal">
-        <div class="avatar"><span class="initials">KV</span><span class="role-tag">Hardware &middot; Rookie</span></div>
-        <div class="mname">Kavya</div>
-      </div>
-      <div class="membercard reveal">
-        <div class="avatar"><span class="initials">MI</span><span class="role-tag">Software &middot; Rookie</span></div>
-        <div class="mname">Mirdul</div>
-      </div>
-      <div class="membercard reveal">
-        <div class="avatar"><span class="initials">SA</span><span class="role-tag">Rookie &middot; Photographer</span></div>
-        <div class="mname">Samarth</div>
-      </div>
-      <div class="membercard reveal">
-        <div class="avatar"><span class="initials">LA</span><span class="role-tag">Software &middot; Rookie</span></div>
-        <div class="mname">Landon</div>
-      </div>
-      <div class="membercard reveal">
-        <div class="avatar"><img src="assets/team/amrit.jpg" alt="Amrit" loading="lazy"><span class="alumni-tag">Alumni</span></div>
-        <div class="mname">Amrit</div>
-      </div>
-      <div class="membercard reveal">
-        <div class="avatar"><img src="assets/team/malcolm.jpg" alt="Malcolm" loading="lazy"><span class="alumni-tag">Alumni</span></div>
-        <div class="mname">Malcolm</div>
-      </div>
-    </div>
-  </div>
-</section>
+<main id="main">
 
-<footer>
-  <div class="wrap">
-    <div class="foot-top">
-      <img src="assets/logo.png" alt="">
-      <div class="ft">Chaotic Current</div>
+  <section class="hero hero--sub">
+    <div class="wrap hero__grid">
+      <div class="hero__text" data-enter>
+        <p class="label">Team &middot; Vista Ridge High School</p>
+        <h1>The students behind 21438</h1>
+        <p class="lead">Students run every part of the team: robot design, code, wiring, the engineering portfolio, outreach and media. Thirteen current members this season.</p>
+        <div class="hero__acts">
+          <a class="btn" href="#roster">See the roster <span class="arr" aria-hidden="true">&darr;</span></a>
+        </div>
+      </div>
+      <div class="ph hero__pic" data-enter-pic>
+        <img src="assets/photos/crowd-1400.webp"
+             srcset="assets/photos/crowd-800.webp 800w, assets/photos/crowd-1400.webp 1400w, assets/photos/crowd-2200.webp 2200w"
+             sizes="(min-width: 960px) 50vw, 100vw" alt="Teammates cheer in the stands with purple pom-poms, hats and a hand-lettered Chaotic Current sign" width="1400" height="933" fetchpriority="high">
+      </div>
     </div>
-    <div class="foot-meta">FTC Team 21438 &middot; Vista Ridge High School &middot; Cedar Park, Texas<br>
-    Sponsored by Firefly &amp; Qualcomm &middot; Competition data from <em>FIRST</em></div>
+  </section>
+
+  <section class="sec sec--alt" id="roster">
+    <div class="wrap">
+      <div class="sec__head">
+        <p class="label">2025&ndash;26 roster</p>
+        <h2>Current members</h2>
+      </div>
+      <ul class="roster">
+        <li class="member"><div class="ph"><img src="assets/team/anjan-372.webp" srcset="assets/team/anjan-240.webp 240w, assets/team/anjan-372.webp 372w" sizes="(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw" width="372" height="465" alt="Anjan" loading="lazy" decoding="async"></div><h3>Anjan</h3><p>Captain</p></li>
+        <li class="member"><div class="ph"><img src="assets/team/advaith-372.webp" srcset="assets/team/advaith-240.webp 240w, assets/team/advaith-372.webp 372w" sizes="(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw" width="372" height="465" alt="Advaith" loading="lazy" decoding="async"></div><h3>Advaith</h3><p>Team operations lead</p></li>
+        <li class="member"><div class="ph"><img src="assets/team/kaveri-372.webp" srcset="assets/team/kaveri-240.webp 240w, assets/team/kaveri-372.webp 372w" sizes="(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw" width="372" height="465" alt="Kaveri" loading="lazy" decoding="async"></div><h3>Kaveri</h3><p>Marketing lead</p></li>
+        <li class="member"><div class="ph"><img src="assets/team/yash-372.webp" srcset="assets/team/yash-240.webp 240w, assets/team/yash-372.webp 372w" sizes="(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw" width="372" height="465" alt="Yash" loading="lazy" decoding="async"></div><h3>Yash</h3><p>Hardware lead</p></li>
+        <li class="member"><div class="ph"><img src="assets/team/azmeel-372.webp" srcset="assets/team/azmeel-240.webp 240w, assets/team/azmeel-372.webp 372w" sizes="(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw" width="372" height="465" alt="Azmeel" loading="lazy" decoding="async"></div><h3>Azmeel</h3><p>Wiring &middot; social media</p></li>
+        <li class="member"><div class="ph"><img src="assets/team/ishaan-372.webp" srcset="assets/team/ishaan-240.webp 240w, assets/team/ishaan-372.webp 372w" sizes="(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw" width="372" height="465" alt="Ishaan" loading="lazy" decoding="async"></div><h3>Ishaan</h3><p>Wiring &middot; website</p></li>
+        <li class="member"><div class="ph"><img src="assets/team/aarya-372.webp" srcset="assets/team/aarya-240.webp 240w, assets/team/aarya-372.webp 372w" sizes="(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw" width="372" height="465" alt="Aarya" loading="lazy" decoding="async"></div><h3>Aarya</h3><p>Poster and portfolio</p></li>
+        <li class="member"><div class="ph"><img src="assets/team/ryan-372.webp" srcset="assets/team/ryan-240.webp 240w, assets/team/ryan-372.webp 372w" sizes="(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw" width="372" height="465" alt="Ryan" loading="lazy" decoding="async"></div><h3>Ryan</h3><p>Software</p></li>
+        <li class="member"><div class="ph"><div class="mono-tile" aria-hidden="true">Si</div></div><h3>Siya</h3><p>Hardware</p></li>
+        <li class="member"><div class="ph"><div class="mono-tile" aria-hidden="true">Kv</div></div><h3>Kavya</h3><p>Hardware &middot; rookie</p></li>
+        <li class="member"><div class="ph"><div class="mono-tile" aria-hidden="true">Mi</div></div><h3>Mirdul</h3><p>Software &middot; rookie</p></li>
+        <li class="member"><div class="ph"><div class="mono-tile" aria-hidden="true">Sa</div></div><h3>Samarth</h3><p>Photography &middot; rookie</p></li>
+        <li class="member"><div class="ph"><div class="mono-tile" aria-hidden="true">La</div></div><h3>Landon</h3><p>Software &middot; rookie</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" id="alumni">
+    <div class="wrap">
+      <div class="sec__head sec__head--split">
+        <div>
+          <p class="label">Alumni</p>
+          <h2 style="margin-top:16px">Former members</h2>
+        </div>
+        <p class="lead">Members who competed with Chaotic Current and have since graduated from Vista Ridge.</p>
+      </div>
+      <ul class="roster roster--alumni">
+        <li class="member"><div class="ph"><img src="assets/team/amrit-372.webp" srcset="assets/team/amrit-240.webp 240w, assets/team/amrit-372.webp 372w" sizes="(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw" width="372" height="465" alt="Amrit" loading="lazy" decoding="async"></div><h3>Amrit</h3><p>Alumni</p></li>
+        <li class="member"><div class="ph"><img src="assets/team/malcolm-372.webp" srcset="assets/team/malcolm-240.webp 240w, assets/team/malcolm-372.webp 372w" sizes="(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw" width="372" height="465" alt="Malcolm" loading="lazy" decoding="async"></div><h3>Malcolm</h3><p>Alumni</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec sec--ink on-ink" id="support">
+    <div class="wrap close">
+      <h2>Back the team for next season</h2>
+      <div>
+        <p class="lead" style="margin-bottom:24px">Donations pay for parts, competition fees and travel, so every student on this page can keep building.</p>
+        <div class="close__acts">
+          <a class="btn" href="sponsors.html#donate">Donate to the team</a>
+          <a class="btn btn--ghost" href="mailto:vrhsengineeringclub@gmail.com">Email the team</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="bignum" aria-hidden="true">214<span>38</span></div>
+    <div class="foot__top">
+      <div class="foot__brand"><img src="assets/logo-96.png" alt="" width="48" height="48" loading="lazy"><div><b>Chaotic Current</b>FTC Team 21438 &middot; Vista Ridge High School, Cedar Park, Texas</div></div>
+      <ul>
+        <li><a href="robots.html">Robots</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="sponsors.html">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="assets/documents/engineering-portfolio.pdf" target="_blank" rel="noopener">Engineering portfolio (PDF)</a></li>
+        <li><a href="mailto:vrhsengineeringclub@gmail.com">Email the team</a></li>
+        <li><a href="sponsors.html#donate">Donate</a></li>
+      </ul>
+    </div>
+    <div class="foot__legal"><span>&copy; <span data-year>2026</span> Chaotic Current, FTC Team 21438</span><span>Sponsored by Firefly Aerospace and Qualcomm</span></div>
   </div>
 </footer>
-
-<script src="js/main.js"></script>
 </body>
 </html>

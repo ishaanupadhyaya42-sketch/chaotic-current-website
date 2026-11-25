@@ -1,0 +1,19 @@
+{
+  "name": "chaotic-current-site-tools",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:viewer": "esbuild viewer/viewer.js --bundle --minify --format=esm --target=es2020 --outfile=../js/viewer3d.js",
+    "convert": "node models/convert.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "0.24.0",
+    "three": "0.170.0",
+    "@gltf-transform/core": "4.2.1",
+    "@gltf-transform/extensions": "4.2.1",
+    "@gltf-transform/functions": "4.2.1",
+    "meshoptimizer": "0.22.0",
+    "draco3dgltf": "1.5.7",
+    "gl-matrix": "3.4.3"
+  }
+}
