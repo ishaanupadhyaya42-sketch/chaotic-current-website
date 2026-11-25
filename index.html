@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Chaotic Current | FTC Team 21438, Cedar Park, Texas</title>
 <meta name="description" content="Chaotic Current is the FIRST Tech Challenge robotics team at Vista Ridge High School in Cedar Park, Texas. Take our robots apart in 3D, meet the team and support next season.">
-<meta name="theme-color" content="#eceef1">
+<meta name="theme-color" content="#09080c">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Chaotic Current | FTC Team 21438">
 <meta property="og:description" content="Student-built competition robots from Vista Ridge High School in Cedar Park, Texas.">
@@ -16,21 +16,24 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<link rel="preload" as="image" href="assets/photos/pit-1400.webp" imagesrcset="assets/photos/pit-800.webp 800w, assets/photos/pit-1400.webp 1400w, assets/photos/pit-2200.webp 2200w" imagesizes="100vw">
 <script>document.documentElement.classList.add('js')</script>
 <script src="js/main.js" defer></script>
+<script src="js/ftcscout.js" defer></script>
+<script src="js/portal.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
 <header class="nav">
   <div class="wrap nav__in">
-    <a class="brand" href="#top" aria-label="Chaotic Current, back to top">
+    <a class="brand" href="index.html" aria-label="Chaotic Current home">
       <img src="assets/logo-96.png" alt="" width="38" height="38">
       <span><b>Chaotic Current</b><small>FTC 21438</small></span>
     </a>
     <button class="nav__toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu"><span></span></button>
     <ul class="nav__links" id="nav-links">
-      <li><a href="#robots">Robots</a></li>
+      <li><a href="robots.html">Robots</a></li>
       <li><a href="#record">Record</a></li>
       <li><a href="#team">Team</a></li>
       <li><a href="#sponsors">Sponsors</a></li>
@@ -41,144 +44,118 @@
 
 <main id="main">
 
-  <!-- ===== The robots: one sticky 3D stage, eight steps scroll over it ===== -->
-  <section class="scene" id="top" data-scene
-           data-stinger="assets/models/stinger.glb" data-stinger-lite="assets/models/stinger-lite.glb"
-           data-patriot="assets/models/patriot.glb" data-patriot-lite="assets/models/patriot-lite.glb">
-    <div class="scene__stage" tabindex="0" aria-label="3D model of the robot. Drag sideways or use the left and right arrow keys to turn it.">
-      <div class="scene__name" aria-hidden="true" data-active="stinger"><span>Stinger</span><span>Patriot</span></div>
-      <img class="scene__poster" src="assets/models/stinger-poster.webp" srcset="assets/models/stinger-poster-600.webp 600w, assets/models/stinger-poster.webp 1200w" sizes="(min-width: 960px) 54vw, 92vw" alt="3D render of Stinger, our competition robot" width="1200" height="900" fetchpriority="high">
-      <div class="scene__tags" aria-hidden="true"></div>
-      <div class="scene__hud">
-        <div class="wrap"><span data-hud-n>01 / 08</span><span data-hud-t>Stinger</span><span class="push" data-status></span></div>
-        <div class="scene__bar"><i></i></div>
+  <!-- ===== Portal hero: step through the gate to the next place ===== -->
+  <section class="portal on-ink" id="top" data-portal aria-roledescription="carousel" aria-label="Places from our season">
+    <ol class="portal__data" hidden>
+        <li data-src="assets/photos/pit-1400.webp" data-srcset="assets/photos/pit-800.webp 800w, assets/photos/pit-1400.webp 1400w, assets/photos/pit-2200.webp 2200w" data-title="The pit" data-text="Between matches the whole team works on the robot under the tent." data-alt="The team crowds around the robot in the pit tent"></li>
+        <li data-src="assets/photos/match-1400.webp" data-srcset="assets/photos/match-800.webp 800w, assets/photos/match-1400.webp 1400w, assets/photos/match-2200.webp 2200w" data-title="The field" data-text="Where the drive team puts a season of work to the test." data-alt="Drive team at the field during a match with game balls on the floor"></li>
+        <li data-src="assets/photos/crowd-1400.webp" data-srcset="assets/photos/crowd-800.webp 800w, assets/photos/crowd-1400.webp 1400w, assets/photos/crowd-2200.webp 2200w" data-title="The stands" data-text="Pom-poms, purple hats and a hand-lettered sign for every match." data-alt="Teammates cheer in the stands with purple pom-poms and a Chaotic Current sign"></li>
+        <li data-src="assets/photos/medals-1400.webp" data-srcset="assets/photos/medals-800.webp 800w, assets/photos/medals-1400.webp 1400w" data-title="The podium" data-text="Second at the 2025–26 UIL 6A State Championship." data-alt="Team members hold up their state championship medals"></li>
+    </ol>
+    <div class="portal__stage">
+      <figure class="portal__bg"><img src="assets/photos/pit-1400.webp" srcset="assets/photos/pit-800.webp 800w, assets/photos/pit-1400.webp 1400w, assets/photos/pit-2200.webp 2200w" sizes="100vw" alt="The team crowds around the robot in the pit tent" width="1400" height="933" fetchpriority="high"></figure>
+    </div>
+    <div class="portal__scrim" aria-hidden="true"></div>
+
+    <div class="wrap portal__in">
+      <div class="portal__text" data-enter>
+        <p class="label">FTC Team 21438 &middot; Cedar Park, Texas</p>
+        <h1>Chaotic <span>Current</span></h1>
+        <svg class="trace" viewBox="0 0 560 28" aria-hidden="true"><path class="t-wire" d="M2 14 H120 L134 4 L150 24 L164 8 L176 14 H300 L312 22 L326 4 L338 14 H558"/><path class="t-pulse" d="M2 14 H120 L134 4 L150 24 L164 8 L176 14 H300 L312 22 L326 4 L338 14 H558"/></svg>
+        <p class="lead">Student-built competition robots from Vista Ridge High School. Students design, build, wire and code every robot, and we finished second at the 2025&ndash;26 UIL 6A State Championship.</p>
+        <div class="hero__acts">
+          <a class="btn" href="robots.html">See the robots in 3D <span class="arr" aria-hidden="true">&rarr;</span></a>
+          <a class="btn btn--ghost" href="#donate">Donate to the team</a>
+        </div>
+      </div>
+      <div class="portal__place" aria-live="polite">
+        <span class="portal__n">01</span>
+        <div><span class="portal__t">The pit</span><span class="portal__d">Between matches the whole team works on the robot under the tent.</span></div>
       </div>
     </div>
 
-    <div class="scene__steps">
-      <article class="step step--hero" data-model="stinger" data-explode="0" data-yaw="-0.7" data-pitch="0.3" data-zoom="1" data-side="right" data-hud="Stinger · assembled">
-        <div class="wrap">
-          <div class="card" data-enter>
-            <p class="label">FIRST&reg; Tech Challenge &middot; Team 21438</p>
-            <h1>Student-built robots from Cedar Park, Texas</h1>
-            <p class="lead">Chaotic Current is the FTC team at Vista Ridge High School. Students design, build, wire and code every robot, and this season we finished second at the UIL 6A State Championship.</p>
-            <div class="hero__acts">
-              <a class="btn" href="#robots">Take Stinger apart <span class="arr" aria-hidden="true">&darr;</span></a>
-              <a class="btn btn--ghost" href="#donate">Donate to the team</a>
-            </div>
-            <div class="facts">
-              <div><b>2nd</b><span>UIL 6A State Championship</span></div>
-              <div><b>Top 4%</b><span>of FTC teams worldwide</span></div>
-              <div><b>450</b><span>students reached through outreach</span></div>
-            </div>
-          </div>
-        </div>
-      </article>
+    <button type="button" class="portal__gate" aria-label="Step through to the next place">
+      <span class="portal__ring" aria-hidden="true">
+        <svg viewBox="0 0 100 115.47"><polygon points="50,1.5 98.5,29.4 98.5,86.1 50,114 1.5,86.1 1.5,29.4"/></svg>
+        <svg class="portal__ring2" viewBox="0 0 100 115.47"><polygon points="50,1.5 98.5,29.4 98.5,86.1 50,114 1.5,86.1 1.5,29.4"/></svg>
+      </span>
+      <span class="portal__win"><img src="assets/photos/match-800.webp" srcset="assets/photos/match-800.webp 800w, assets/photos/match-1400.webp 1400w" alt="" sizes="(min-width: 960px) 30vw, 60vw" width="800" height="533" decoding="async"></span>
+      <span class="portal__cta">Step through to <span>The field</span> &rarr;</span>
+    </button>
 
-      <article class="step step--right" id="robots" data-model="stinger" data-explode="0.12" data-yaw="-2.0" data-pitch="0.22" data-zoom="0.95" data-side="left" data-hud="Stinger · robot 02">
-        <div class="wrap">
-          <div class="card">
-            <p class="label">Robot 02 &middot; version 2.0 &middot; current</p>
-            <h2>Stinger, our competition robot</h2>
-            <p class="prose">Built from scratch for speed, defense and full-field range. Keep scrolling and it comes apart, part by part, the way we built it.</p>
-          </div>
-        </div>
-      </article>
-
-      <article class="step" data-model="stinger" data-explode="1" data-yaw="-0.55" data-pitch="0.5" data-zoom="1" data-side="right" data-labels="on" data-hud="Stinger · exploded">
-        <div class="wrap">
-          <div class="card">
-            <p class="label">Exploded view</p>
-            <h2>Intake to launcher in one pass</h2>
-            <p class="prose">A three-section intake pulls in three balls at once through medium-compression REV silicone wheels, funnels them past goBILDA rubber gears and fires them off two flexible 72&nbsp;mm flywheels through a 3D-printed hood set at 35&deg;.</p>
-          </div>
-        </div>
-      </article>
-
-      <article class="step step--right" data-model="stinger" data-explode="1" data-yaw="-2.7" data-pitch="0.36" data-zoom="1" data-side="left" data-labels="on" data-hud="Stinger · specs">
-        <div class="wrap">
-          <div class="card">
-            <p class="label">Stinger specs</p>
-            <h2>What it runs on</h2>
-            <dl class="specs">
-              <div><dt>Drivetrain</dt><dd>Mecanum, belt-driven front wheels</dd></div>
-              <div><dt>Intake</dt><dd>Three-section REV silicone wheels, three-ball capacity</dd></div>
-              <div><dt>Launcher</dt><dd>Dual 72&nbsp;mm flywheels, Swyft inertia weights</dd></div>
-              <div><dt>Vision</dt><dd>Logitech C920, AprilTag detection</dd></div>
-              <div><dt>Chassis</dt><dd>ACM composite panels</dd></div>
-            </dl>
-          </div>
-        </div>
-      </article>
-
-      <article class="step" data-model="stinger" data-explode="0" data-yaw="0.45" data-pitch="0.2" data-zoom="0.95" data-side="right" data-hud="Stinger · reassembled">
-        <div class="wrap">
-          <div class="card">
-            <p class="label">Chassis</p>
-            <h2>Walls built to take a hit</h2>
-            <p class="prose">Impact-resistant ACM composite walls protect the electronics without the weight of aluminum, which matters with defense allowed on the field this season.</p>
-          </div>
-        </div>
-      </article>
-
-      <article class="step step--right" data-model="patriot" data-explode="0" data-yaw="-2.3" data-pitch="0.28" data-zoom="1" data-side="left" data-hud="Patriot · robot 01">
-        <div class="wrap">
-          <div class="card">
-            <p class="label">Robot 01 &middot; version 1.0</p>
-            <h2>Patriot, the rapid-fire scorer</h2>
-            <p class="prose">Our first robot of the season, built around a dual-flywheel launcher tuned for consistency over raw speed.</p>
-          </div>
-        </div>
-      </article>
-
-      <article class="step" data-model="patriot" data-explode="1" data-yaw="-1.1" data-pitch="0.5" data-zoom="1" data-side="right" data-labels="on" data-hud="Patriot · exploded">
-        <div class="wrap">
-          <div class="card">
-            <p class="label">Exploded view</p>
-            <h2>Four fixes that made it consistent</h2>
-            <p class="prose">A Logitech C920 for reliable AprilTag detection, a redesigned outtake ramp so every ball left at the same angle, a 1:1 flywheel gear ratio to hold torque under load, and a second motor with a third flywheel that removed firing delays.</p>
-          </div>
-        </div>
-      </article>
-
-      <article class="step step--right" data-model="patriot" data-explode="0.55" data-yaw="-3.1" data-pitch="0.34" data-zoom="0.95" data-side="left" data-labels="on" data-hud="Patriot · specs">
-        <div class="wrap">
-          <div class="card">
-            <p class="label">Patriot specs</p>
-            <h2>What it ran on</h2>
-            <dl class="specs">
-              <div><dt>Drivetrain</dt><dd>Mecanum, goBILDA</dd></div>
-              <div><dt>Launcher</dt><dd>Dual flywheels, 1:1 gear ratio</dd></div>
-              <div><dt>Vision</dt><dd>Logitech C920, AprilTag detection</dd></div>
-              <div><dt>Odometry</dt><dd>goBILDA odometry, REV 9-axis IMU</dd></div>
-            </dl>
-            <a class="btn btn--ghost" href="assets/documents/engineering-portfolio.pdf" target="_blank" rel="noopener">Read the portfolio (PDF)</a>
-          </div>
-        </div>
-      </article>
+    <div class="portal__nav">
+      <div class="wrap">
+        <span class="portal__count">01 / 04</span>
+        <span class="portal__bar" aria-hidden="true"><i></i></span>
+        <button type="button" class="portal__prev" aria-label="Previous place">&larr;</button>
+        <button type="button" class="portal__next" aria-label="Next place">&rarr;</button>
+        <button type="button" class="portal__pause" aria-label="Pause slideshow"><span aria-hidden="true"></span></button>
+      </div>
     </div>
   </section>
 
-  <!-- ===== Record ===== -->
+  <!-- ===== Robots teaser: the 3D lives on robots.html ===== -->
+  <section class="sec" id="robots">
+    <div class="wrap">
+      <div class="sec__head sec__head--split">
+        <div>
+          <p class="label">The robots &middot; 2025&ndash;26</p>
+          <h2 style="margin-top:16px">Take Stinger and Patriot apart in 3D</h2>
+        </div>
+        <p class="lead">Both robots were designed in Onshape and built by students. On the robots page you scroll to explode them part by part and drag to turn them.</p>
+      </div>
+      <div class="bots">
+        <a class="bot" href="robots.html">
+          <img src="assets/models/stinger-poster.webp" srcset="assets/models/stinger-poster-600.webp 600w, assets/models/stinger-poster.webp 1200w" sizes="(min-width: 860px) 50vw, 100vw" alt="3D render of Stinger" width="1200" height="900" loading="lazy" decoding="async">
+          <div class="bot__meta"><h3>Stinger</h3><span>Robot 02 &rarr;</span></div>
+        </a>
+        <a class="bot" href="robots.html#patriot">
+          <img src="assets/models/patriot-poster.webp" srcset="assets/models/patriot-poster-600.webp 600w, assets/models/patriot-poster.webp 1200w" sizes="(min-width: 860px) 50vw, 100vw" alt="3D render of Patriot" width="1200" height="900" loading="lazy" decoding="async">
+          <div class="bot__meta"><h3>Patriot</h3><span>Robot 01 &rarr;</span></div>
+        </a>
+      </div>
+      <div class="bots__cta"><a class="btn" href="robots.html">Open the robots in 3D <span class="arr" aria-hidden="true">&rarr;</span></a></div>
+    </div>
+  </section>
+
+  <!-- ===== Record: live from FTCScout ===== -->
   <section class="sec sec--alt" id="record">
     <div class="wrap">
       <div class="sec__head sec__head--split">
         <div>
-          <p class="label">Since 2022</p>
-          <h2 style="margin-top:16px">Our record, three seasons in</h2>
+          <p class="label"><span class="live-dot" aria-hidden="true"></span>Live from FTCScout</p>
+          <h2 style="margin-top:16px">Our season, event by event</h2>
         </div>
-        <p class="lead">We started as a rookie team in 2022. This season we went undefeated in qualification matches at state and reached the final.</p>
+        <p class="lead">Results load from FTCScout as events are scored. OPR estimates the points we add to an alliance each match, ranked against every FTC team in the world.</p>
       </div>
-      <div class="results__grid">
-        <dl class="sheet">
-          <div class="sheet__row"><dt>2nd at state</dt><dd>FIRST in Texas UIL 6A State Championship, the largest division in the state. We captained the finalist alliance.</dd></div>
-          <div class="sheet__row"><dt>Perfect qualification</dt><dd>Every qualification match won at the state championship.</dd></div>
-          <div class="sheet__row"><dt>Design Award</dt><dd>Judged award for the design of our robot.</dd></div>
-          <div class="sheet__row"><dt>Top 4% worldwide</dt><dd>Ranked among the top four percent of FIRST Tech Challenge teams.</dd></div>
-        </dl>
-        <div class="ph ph--hover">
-          <img src="assets/photos/medals-800.webp" srcset="assets/photos/medals-800.webp 800w, assets/photos/medals-1400.webp 1400w"
-               sizes="(min-width: 960px) 40vw, 100vw" alt="Team members hold up their state championship medals in front of the FIRST backdrop" width="800" height="498" loading="lazy" decoding="async">
+
+      <div class="live" data-ftcscout data-team="21438">
+        <div class="live__bar">
+          <div class="live__tabs" role="tablist" aria-label="Season"></div>
+          <a class="link live__src" href="https://ftcscout.org/teams/21438" target="_blank" rel="noopener">Team 21438 on FTCScout &nearr;</a>
+        </div>
+        <div class="live__stats" aria-live="polite">
+          <div class="live__tile"><span class="label">Total OPR</span><b>&ndash;</b><span class="live__sub">&nbsp;</span></div>
+          <div class="live__tile"><span class="label">Auto OPR</span><b>&ndash;</b><span class="live__sub">&nbsp;</span></div>
+          <div class="live__tile"><span class="label">Teleop OPR</span><b>&ndash;</b><span class="live__sub">&nbsp;</span></div>
+          <div class="live__tile"><span class="label">Record</span><b>&ndash;</b><span class="live__sub">&nbsp;</span></div>
+        </div>
+        <p class="live__fail">FTCScout did not answer just now. <a class="link" href="https://ftcscout.org/teams/21438" target="_blank" rel="noopener">See our results on FTCScout</a>.</p>
+        <div class="live__grid">
+          <div class="live__events tiers-wrap">
+            <table class="tiers live__table">
+              <thead><tr><th scope="col">Date</th><th scope="col">Event</th><th scope="col">Rank</th><th scope="col">W&ndash;L</th><th scope="col">OPR</th></tr></thead>
+              <tbody><tr><td colspan="5" class="live__loading">Loading events&hellip;</td></tr></tbody>
+            </table>
+          </div>
+          <div class="live__side">
+            <h3>Awards</h3>
+            <ul class="live__awards"><li class="is-empty"><b>Loading&hellip;</b><span>&nbsp;</span></li></ul>
+            <div class="ph ph--hover">
+              <img src="assets/photos/medals-800.webp" srcset="assets/photos/medals-800.webp 800w, assets/photos/medals-1400.webp 1400w"
+                   sizes="(min-width: 960px) 30vw, 100vw" alt="Team members hold up their state championship medals in front of the FIRST backdrop" width="800" height="498" loading="lazy" decoding="async">
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -317,7 +294,7 @@
     <div class="foot__top">
       <div class="foot__brand"><img src="assets/logo-96.png" alt="" width="48" height="48" loading="lazy"><div><b>Chaotic Current</b>FTC Team 21438 &middot; Vista Ridge High School, Cedar Park, Texas</div></div>
       <ul>
-        <li><a href="#robots">Robots</a></li>
+        <li><a href="robots.html">Robots</a></li>
         <li><a href="#team">Team</a></li>
         <li><a href="#sponsors">Sponsors</a></li>
       </ul>

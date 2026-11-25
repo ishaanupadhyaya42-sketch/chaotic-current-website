@@ -25,7 +25,7 @@ const MAX_DELAY = 0.32; // matches the converter's start-delay range
 function blobShadow() {
   const c = document.createElement('canvas'); c.width = c.height = 128;
   const g = c.getContext('2d'), r = g.createRadialGradient(64, 64, 4, 64, 64, 64);
-  r.addColorStop(0, 'rgba(18,20,26,.38)'); r.addColorStop(1, 'rgba(18,20,26,0)');
+  r.addColorStop(0, 'rgba(150,90,255,.55)'); r.addColorStop(.45, 'rgba(110,50,220,.22)'); r.addColorStop(1, 'rgba(80,30,180,0)');
   g.fillStyle = r; g.fillRect(0, 0, 128, 128);
   return new CanvasTexture(c);
 }
@@ -68,7 +68,7 @@ export function mountScene(root) {
   try { renderer = new WebGLRenderer({ antialias: (devicePixelRatio || 1) < 2, alpha: true }); }
   catch (e) { root.classList.add('is-failed'); return; }
   renderer.setPixelRatio(Math.min(devicePixelRatio || 1, lowEnd ? 1.5 : 2));
-  renderer.toneMapping = ACESFilmicToneMapping; renderer.toneMappingExposure = 1.05;
+  renderer.toneMapping = ACESFilmicToneMapping; renderer.toneMappingExposure = 1.2;
   renderer.outputColorSpace = SRGBColorSpace;
   const canvas = renderer.domElement; canvas.className = 'scene__canvas'; canvas.setAttribute('aria-hidden', 'true');
   stage.prepend(canvas);
@@ -76,7 +76,9 @@ export function mountScene(root) {
   const scene = new Scene();
   const pm = new PMREMGenerator(renderer);
   scene.environment = pm.fromScene(new RoomEnvironment(), 0.04).texture; pm.dispose();
-  const key = new DirectionalLight(0xffffff, 1.1); key.position.set(2, 4, 3); scene.add(key);
+  const key = new DirectionalLight(0xffffff, 1.3); key.position.set(2, 4, 3); scene.add(key);
+  const rim = new DirectionalLight(0x9a5cff, 3.2); rim.position.set(-2.5, 1.6, -3); scene.add(rim);
+  const rim2 = new DirectionalLight(0xb48cff, 1.6); rim2.position.set(3, 0.8, -2); scene.add(rim2);
   const camera = new PerspectiveCamera(30, 1, 0.01, 60);
 
   // robots: [stinger, patriot]
@@ -126,7 +128,7 @@ export function mountScene(root) {
 
   // ---------- state ----------
   const cur = { explode: 0, yaw: K[0].yaw, pitch: K[0].pitch, zoom: K[0].zoom, side: K[0].side, labels: 0, model: 0 };
-  let userYaw = 0, userVel = 0, idle = 0, visible = true, raf = 0, last = performance.now(), lastHud = -1, lastName = -1;
+  let userYaw = 0, userVel = 0, visible = true, raf = 0, last = performance.now(), lastHud = -1, lastName = -1;
 
   function progress() {
     const r = root.getBoundingClientRect(), span = r.height - innerHeight;
@@ -153,9 +155,8 @@ export function mountScene(root) {
     raf = 0; if (!visible) return;
     const dt = Math.min(0.05, (now - last) / 1000); last = now;
     const T = target();
-    const k = reduceMotion ? 1 : 1 - Math.exp(-dt * 7);
+    const k = reduceMotion ? 1 : 1 - Math.exp(-dt * 4.2);
     for (const f of ['explode', 'yaw', 'pitch', 'zoom', 'side', 'labels', 'model']) cur[f] += (T[f] - cur[f]) * k;
-    if (!reduceMotion && !dragging) idle += dt * 0.14;
     if (!dragging) { userYaw += userVel; userVel *= 0.93; }
 
     // robot swap: the first drops away, the second rises in
@@ -166,22 +167,22 @@ export function mountScene(root) {
       r.group.visible = r.ready && sc > 0.002;
       r.group.scale.setScalar(Math.max(sc, 0.0001));
       r.group.position.y = (1 - sc) * (i === 0 ? -0.25 : 0.25) * r.radius;
-      r.group.rotation.y = cur.yaw + idle + userYaw + (1 - sc) * (i === 0 ? 1.4 : -1.4);
+      r.group.rotation.y = cur.yaw + userYaw + (1 - sc) * (i === 0 ? 0.35 : -0.35);
       r.u.value = cur.explode;
-      if (r.shadow) r.shadow.material.opacity = 1 - cur.explode * 0.6;
+      if (r.shadow) r.shadow.material.opacity = 0.9;
     });
 
     // camera: further back as the robot comes apart; framed off to one side on wide screens
     const R = robots[active].ready ? robots[active].radius : 0.3;
     const wide = camera.aspect >= 1.05;
-    const fit = wide ? 1 : Math.pow(1.05 / camera.aspect, 0.5) * 1.05;
-    const dist = R * 5.4 * cur.zoom * (1 + 0.62 * cur.explode) * fit;
+    const fit = wide ? 1 : Math.pow(1.05 / camera.aspect, 0.5) * 1.22;
+    const dist = R * 4.4 * cur.zoom * (1 + 0.68 * cur.explode) * fit;
     const cp = Math.cos(cur.pitch);
     camera.position.set(0, Math.sin(cur.pitch) * dist, cp * dist);
-    camera.lookAt(0, cur.explode * R * 0.35, 0);
+    camera.lookAt(0, cur.explode * R * 0.4, 0);
     const w = stage.clientWidth, h = stage.clientHeight;
-    if (wide) camera.setViewOffset(w, h, -cur.side * w * 0.2, 0, w, h);
-    else camera.setViewOffset(w, h, 0, h * 0.2, w, h);
+    if (wide) camera.setViewOffset(w, h, -cur.side * w * 0.2, h * 0.09, w, h);
+    else camera.setViewOffset(w, h, 0, h * 0.19, w, h);
     camera.updateMatrixWorld();
 
     renderer.render(scene, camera);
@@ -221,8 +222,8 @@ export function mountScene(root) {
     if (bar) bar.style.transform = `scaleX(${(T.s / (K.length - 1)).toFixed(4)})`;
     if (nameEl && active !== lastName) { lastName = active; nameEl.dataset.active = active ? 'patriot' : 'stinger'; }
 
-    const settling = Math.abs(T.explode - cur.explode) + Math.abs(T.yaw - cur.yaw) + Math.abs(T.model - cur.model) + Math.abs(T.side - cur.side) > 1e-4;
-    if (!reduceMotion || settling || dragging || Math.abs(userVel) > 1e-4) kick();
+    const settling = ['explode', 'yaw', 'pitch', 'zoom', 'side', 'labels', 'model'].some((f) => Math.abs(T[f] - cur[f]) > 1e-4);
+    if (settling || dragging || Math.abs(userVel) > 1e-4) kick();
   }
   function kick() { if (!raf && visible) { last = performance.now(); raf = requestAnimationFrame(frame); } }
 

@@ -2,11 +2,192 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Chaotic Current | FTC Team 21438</title>
-<meta name="robots" content="noindex">
-<link rel="canonical" href="index.html#robots">
-<meta http-equiv="refresh" content="0; url=index.html#robots">
-<script>location.replace('index.html#robots')</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Robots | Chaotic Current FTC 21438</title>
+<meta name="description" content="Stinger and Patriot, the 2025-26 robots of FTC team 21438 Chaotic Current. Scroll to take them apart in 3D.">
+<meta name="theme-color" content="#09080c">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Stinger and Patriot | Chaotic Current FTC 21438">
+<meta property="og:description" content="Student-built competition robots from Vista Ridge High School in Cedar Park, Texas.">
+<meta property="og:image" content="assets/photos/build-1400.webp">
+<link rel="icon" href="assets/logo-96.png">
+<link rel="apple-touch-icon" href="assets/logo-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script>document.documentElement.classList.add('js')</script>
+<script src="js/main.js" defer></script>
 </head>
-<body><p><a href="index.html#robots">This page moved. Go to Chaotic Current.</a></p></body>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="wrap nav__in">
+    <a class="brand" href="index.html" aria-label="Chaotic Current home">
+      <img src="assets/logo-96.png" alt="" width="38" height="38">
+      <span><b>Chaotic Current</b><small>FTC 21438</small></span>
+    </a>
+    <button class="nav__toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu"><span></span></button>
+    <ul class="nav__links" id="nav-links">
+      <li><a href="robots.html" aria-current="page">Robots</a></li>
+      <li><a href="index.html#record">Record</a></li>
+      <li><a href="index.html#team">Team</a></li>
+      <li><a href="index.html#sponsors">Sponsors</a></li>
+      <li><a class="btn" href="index.html#donate">Donate</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ===== The robots: one sticky 3D stage, steps scroll over it ===== -->
+  <section class="scene" id="robots" data-scene
+           data-stinger="assets/models/stinger.glb" data-stinger-lite="assets/models/stinger-lite.glb"
+           data-patriot="assets/models/patriot.glb" data-patriot-lite="assets/models/patriot-lite.glb">
+    <div class="scene__stage" tabindex="0" aria-label="3D model of the robot. Drag sideways or use the left and right arrow keys to turn it.">
+      <div class="scene__name" aria-hidden="true" data-active="stinger"><span>Stinger</span><span>Patriot</span></div>
+      <img class="scene__poster" src="assets/models/stinger-poster.webp" srcset="assets/models/stinger-poster-600.webp 600w, assets/models/stinger-poster.webp 1200w" sizes="(min-width: 960px) 54vw, 92vw" alt="3D render of Stinger, our competition robot" width="1200" height="900" fetchpriority="high">
+      <div class="scene__tags" aria-hidden="true"></div>
+      <div class="scene__hud">
+        <div class="wrap"><span data-hud-n>01 / 07</span><span data-hud-t>Stinger</span><span class="push" data-status></span></div>
+        <div class="scene__bar"><i></i></div>
+      </div>
+    </div>
+
+    <div class="scene__steps">
+      <article class="step" data-model="stinger" data-explode="0" data-yaw="-0.7" data-pitch="0.3" data-zoom="1" data-hud="Stinger · assembled">
+        <div class="wrap">
+          <div class="card" data-enter>
+            <p class="label">Robot 02 &middot; version 2.0 &middot; 2025&ndash;26</p>
+            <h1>Stinger</h1>
+            <p class="prose">Built from scratch for speed, defense and full-field range. Scroll and it comes apart, part by part. Drag sideways to turn it.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="step" data-model="stinger" data-explode="1" data-yaw="-0.55" data-pitch="0.42" data-zoom="1" data-labels="on" data-hud="Stinger · exploded">
+        <div class="wrap">
+          <div class="card">
+            <p class="label">Exploded view</p>
+            <h2>Intake to launcher in one pass</h2>
+            <p class="prose">A three-section intake pulls in three balls at once through medium-compression REV silicone wheels, funnels them past goBILDA rubber gears and fires them off two flexible 72&nbsp;mm flywheels through a 3D-printed hood set at 35&deg;.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="step" data-model="stinger" data-explode="1" data-yaw="-0.9" data-pitch="0.36" data-zoom="1" data-labels="on" data-hud="Stinger · specs">
+        <div class="wrap">
+          <div class="card">
+            <p class="label">Stinger specs</p>
+            <h2>What it runs on</h2>
+            <dl class="specs">
+              <div><dt>Drivetrain</dt><dd>Mecanum, belt-driven front wheels</dd></div>
+              <div><dt>Intake</dt><dd>Three-section REV silicone wheels, three-ball capacity</dd></div>
+              <div><dt>Launcher</dt><dd>Dual 72&nbsp;mm flywheels, Swyft inertia weights</dd></div>
+              <div><dt>Vision</dt><dd>Logitech C920, AprilTag detection</dd></div>
+              <div><dt>Chassis</dt><dd>ACM composite panels</dd></div>
+            </dl>
+          </div>
+        </div>
+      </article>
+
+      <article class="step" data-model="stinger" data-explode="0" data-yaw="-0.6" data-pitch="0.26" data-zoom="1" data-hud="Stinger · reassembled">
+        <div class="wrap">
+          <div class="card">
+            <p class="label">Chassis</p>
+            <h2>Walls built to take a hit</h2>
+            <p class="prose">Impact-resistant ACM composite walls protect the electronics without the weight of aluminum, which matters with defense allowed on the field.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="step" id="patriot" data-model="patriot" data-explode="0" data-yaw="-0.75" data-pitch="0.3" data-zoom="1" data-hud="Patriot · assembled">
+        <div class="wrap">
+          <div class="card">
+            <p class="label">Robot 01 &middot; version 1.0 &middot; 2025&ndash;26</p>
+            <h2>Patriot</h2>
+            <p class="prose">Our first robot of the 2025&ndash;26 season: a rapid-fire scorer built around a dual-flywheel launcher tuned for consistency over raw speed.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="step" data-model="patriot" data-explode="1" data-yaw="-0.6" data-pitch="0.42" data-zoom="1" data-labels="on" data-hud="Patriot · exploded">
+        <div class="wrap">
+          <div class="card">
+            <p class="label">Exploded view</p>
+            <h2>Four fixes that made it consistent</h2>
+            <p class="prose">A Logitech C920 for reliable AprilTag detection, a redesigned outtake ramp so every ball left at the same angle, a 1:1 flywheel gear ratio to hold torque under load, and a second motor with a third flywheel that removed firing delays.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="step" data-model="patriot" data-explode="0.6" data-yaw="-0.95" data-pitch="0.34" data-zoom="1" data-labels="on" data-hud="Patriot · specs">
+        <div class="wrap">
+          <div class="card">
+            <p class="label">Patriot specs</p>
+            <h2>What it ran on</h2>
+            <dl class="specs">
+              <div><dt>Drivetrain</dt><dd>Mecanum, goBILDA</dd></div>
+              <div><dt>Launcher</dt><dd>Dual flywheels, 1:1 gear ratio</dd></div>
+              <div><dt>Vision</dt><dd>Logitech C920, AprilTag detection</dd></div>
+              <div><dt>Odometry</dt><dd>goBILDA odometry, REV 9-axis IMU</dd></div>
+            </dl>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="sec" id="sheets">
+    <div class="wrap">
+      <div class="sec__head sec__head--split">
+        <div>
+          <p class="label">From the engineering portfolio</p>
+          <h2 style="margin-top:16px">Labeled parts and exploded views</h2>
+        </div>
+        <p class="lead">The same robots as drawn for judges, with every major part named. <a class="link" href="assets/documents/engineering-portfolio.pdf" target="_blank" rel="noopener">Read the full portfolio (PDF)</a>.</p>
+      </div>
+      <div class="sheets">
+        <div class="ph"><img src="assets/robots/stinger-ep.webp" srcset="assets/robots/stinger-ep-450.webp 450w, assets/robots/stinger-ep.webp 900w" sizes="(min-width: 860px) 50vw, 100vw" alt="Stinger with its webcam, Swyft weights, ACM walls, REV wheels, odometry and mecanum drive labeled, above exploded views of the launcher, wheelbase and intake" width="900" height="1050" loading="lazy" decoding="async"></div>
+        <div class="ph"><img src="assets/robots/patriot-ep.webp" srcset="assets/robots/patriot-ep-450.webp 450w, assets/robots/patriot-ep.webp 900w" sizes="(min-width: 860px) 50vw, 100vw" alt="Patriot with its webcam, IMU, servo gate, outtake ramp, ACM walls, rubber intake, odometry and mecanum drive labeled, above exploded views of the intake and launcher" width="900" height="1050" loading="lazy" decoding="async"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec--ink on-ink" id="support">
+    <div class="wrap close">
+      <h2>Help fund next season&rsquo;s robot</h2>
+      <div>
+        <p class="lead" style="margin-bottom:24px">Every part on these robots was bought with sponsor money and donations. Black-tier sponsors get their logo on the robot itself.</p>
+        <div class="close__acts">
+          <a class="btn" href="index.html#donate">Donate to the team</a>
+          <a class="btn btn--ghost" href="index.html#sponsors">See sponsor tiers</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="bignum" aria-hidden="true">214<span>38</span></div>
+    <div class="foot__top">
+      <div class="foot__brand"><img src="assets/logo-96.png" alt="" width="48" height="48" loading="lazy"><div><b>Chaotic Current</b>FTC Team 21438 &middot; Vista Ridge High School, Cedar Park, Texas</div></div>
+      <ul>
+        <li><a href="robots.html">Robots</a></li>
+        <li><a href="index.html#team">Team</a></li>
+        <li><a href="index.html#sponsors">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="assets/documents/engineering-portfolio.pdf" target="_blank" rel="noopener">Engineering portfolio (PDF)</a></li>
+        <li><a href="mailto:vrhsengineeringclub@gmail.com">Email the team</a></li>
+        <li><a href="index.html#donate">Donate</a></li>
+      </ul>
+    </div>
+    <div class="foot__legal"><span>&copy; <span data-year>2026</span> Chaotic Current, FTC Team 21438</span><span>Sponsored by Firefly Aerospace and Qualcomm</span></div>
+  </div>
+</footer>
+</body>
 </html>
