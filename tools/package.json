@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build:viewer": "esbuild viewer/viewer.js --bundle --minify --format=esm --target=es2020 --outfile=../js/viewer3d.js",
+    "build:scene": "esbuild viewer/scene.js --bundle --minify --format=esm --target=es2020 --outfile=../js/scene3d.js",
     "convert": "node models/convert.mjs"
   },
   "devDependencies": {

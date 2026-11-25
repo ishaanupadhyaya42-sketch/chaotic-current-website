@@ -1,4 +1,4 @@
-/* Chaotic Current — shared page script (small; the 3D code loads only when a robot is near the screen) */
+/* Chaotic Current — page script. The 3D scene bundle (three.js) is fetched separately, right after first paint. */
 document.documentElement.classList.add('js');
 const SCRIPT_URL = document.currentScript ? document.currentScript.src : location.href;
 
@@ -16,25 +16,33 @@ const SCRIPT_URL = document.currentScript ? document.currentScript.src : locatio
   matchMedia('(min-width: 860px)').addEventListener('change', () => set(false));
 })();
 
-/* hero entrance: once, on load */
-requestAnimationFrame(() => requestAnimationFrame(() => {
-  document.querySelectorAll('[data-enter], [data-enter-pic]').forEach((el) => el.classList.add('is-in'));
-}));
-
-/* 3D viewers: fetch the three.js bundle the first time a viewer comes within ~one screen */
+/* nav: mark the section on screen */
 (() => {
-  const viewers = document.querySelectorAll('[data-viewer]');
-  if (!viewers.length) return;
-  let mod;
-  const load = () => (mod ||= import(new URL('viewer3d.js', SCRIPT_URL).href));
+  const links = [...document.querySelectorAll('.nav__links a[href^="#"]:not(.btn)')];
+  const map = new Map(links.map((a) => [a.getAttribute('href').slice(1), a]));
   const io = new IntersectionObserver((entries) => {
     entries.forEach((en) => {
       if (!en.isIntersecting) return;
-      io.unobserve(en.target);
-      load().then((m) => m.mount(en.target)).catch(() => en.target.classList.add('is-failed'));
+      links.forEach((a) => a.removeAttribute('aria-current'));
+      const a = map.get(en.target.id); if (a) a.setAttribute('aria-current', 'true');
     });
-  }, { rootMargin: '600px 0px' });
-  viewers.forEach((v) => io.observe(v));
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  map.forEach((_, id) => { const el = document.getElementById(id); if (el) io.observe(el); });
+})();
+
+/* first-screen entrance: once, on load */
+requestAnimationFrame(() => requestAnimationFrame(() => {
+  document.querySelectorAll('[data-enter]').forEach((el) => el.classList.add('is-in'));
+}));
+
+/* the robot scene */
+(() => {
+  const root = document.querySelector('[data-scene]');
+  if (!root) return;
+  const go = () => import(new URL('scene3d.js', SCRIPT_URL).href)
+    .then((m) => m.mountScene(root))
+    .catch(() => root.classList.add('is-failed'));
+  if (document.readyState === 'complete') go(); else addEventListener('load', go, { once: true });
 })();
 
 /* footer year */

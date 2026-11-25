@@ -7,16 +7,22 @@ cd tools
 npm install
 ```
 
-## 3D viewer
+## 3D scene
 
-Source: `viewer/viewer.js`. Build to `../js/viewer3d.js` with `npm run build:viewer`.
-Each `[data-viewer]` element on a page sets `data-model` (desktop file), `data-lite` (phones and
-low-memory devices), `data-yaw` (starting angle) and `data-front` (yaw, in radians, that faces the robot's front).
+Source: `viewer/scene.js`. Build to `../js/scene3d.js` with `npm run build:scene`.
+
+The robot section of `index.html` (`[data-scene]`) is one sticky full-screen canvas. Each `.step`
+inside it sets the pose for that point of the scroll:
+`data-model` (stinger or patriot), `data-explode` (0 to 1), `data-yaw`, `data-pitch`, `data-zoom`,
+`data-side` (where the robot sits on wide screens) and `data-labels="on"` for part labels.
+Edit those attributes to change the camera moves; no rebuild needed.
 
 ## Converting an Onshape export
 
 Onshape GLB exports are hundreds of MB. `models/convert.mjs` drops fasteners under ~1 cm, welds and
 simplifies each part to a fixed error in metres, merges parts by colour and writes a meshopt-compressed GLB.
+Every vertex carries its part's exploded-view offset (`_EXPLODE`), and part labels are found by name
+(the `LABELS` list in the script).
 
 ```
 ABS=1 NOFB=1 node --max-old-space-size=20000 models/convert.mjs Robot.glb ../assets/models/robot.glb      --min 0.009 --err 0.0006 --ratio 0.001

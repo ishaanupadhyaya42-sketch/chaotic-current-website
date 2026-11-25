@@ -1,5 +1,7 @@
 // Onshape GLB -> web-ready GLB: drop tiny parts, weld + simplify each part, creased normals,
 // one primitive per colour, quantized + meshopt-compressed.
+// Each vertex also carries _EXPLODE (xyz offset of its part in the exploded view, w = start delay)
+// and the scene node carries label anchors (extras.labels) found by part name.
 // usage: node convert.mjs in.glb out.glb --min 0.008 --err 0.004 [--budget 300000]
 import { NodeIO, Document } from '@gltf-transform/core';
 import { ALL_EXTENSIONS, EXTMeshoptCompression } from '@gltf-transform/extensions';
@@ -34,12 +36,22 @@ for (const scene of src.getRoot().listScenes()) scene.traverse(node => {
     const a = p.getAttribute('POSITION'); const lo = a.getMin([]), hi = a.getMax([]);
     for (let c = 0; c < 8; c++) { vec3.transformMat4(w, [c & 1 ? hi[0] : lo[0], c & 2 ? hi[1] : lo[1], c & 4 ? hi[2] : lo[2]], M); for (let k = 0; k < 3; k++) { if (w[k] < min[k]) min[k] = w[k]; if (w[k] > max[k]) max[k] = w[k]; } }
   }
-  parts.push({ mesh, M: Array.from(M), diag: vec3.distance(min, max), ctr: [(min[0]+max[0])/2,(min[1]+max[1])/2,(min[2]+max[2])/2] });
+  let nm = '', pn = node; while (pn && !nm) { nm = (pn.getName() || '').replace(/^occurrence of /, ''); pn = pn.getParentNode(); }
+  parts.push({ name: nm, mesh, M: Array.from(M), diag: vec3.distance(min, max), ctr: [(min[0]+max[0])/2,(min[1]+max[1])/2,(min[2]+max[2])/2] });
 });
 
 { const med = [0,1,2].map(k => { const a = parts.map(p => p.ctr[k]).sort((x,y)=>x-y); return a[a.length>>1]; });
   const before = parts.length; for (let i = parts.length - 1; i >= 0; i--) if (vec3.distance(parts[i].ctr, med) > 0.45) parts.splice(i, 1);
   console.log('outliers dropped', before - parts.length); }
+// ---------- exploded view: each part moves out from the footprint centre and up by its height ----------
+{ const lo = [1e9, 1e9, 1e9], hi = [-1e9, -1e9, -1e9];
+  for (const p of parts) for (let k = 0; k < 3; k++) { lo[k] = Math.min(lo[k], p.ctr[k]); hi[k] = Math.max(hi[k], p.ctr[k]); }
+  const cx = (lo[0] + hi[0]) / 2, cy = (lo[1] + hi[1]) / 2, H = Math.max(1e-3, hi[2] - lo[2]);
+  for (const p of parts) {
+    const t = (p.ctr[2] - lo[2]) / H;
+    p.exp = [(p.ctr[0] - cx) * 0.85, (p.ctr[1] - cy) * 0.85, t * H * 0.95 + 0.012, 0.32 * (1 - t)];
+  }
+}
 // ---------- 2. per (mesh, colour): weld + simplify + creased normals (cached across instances) ----------
 const cache = new Map();
 function weldMerge(prims) {
@@ -112,11 +124,11 @@ function build(min, err) {
     const M = part.M, N = mat3.normalFromMat4([], M), flip = mat4.determinant(M) < 0;
     for (const [k, prims] of byCol) {
       const g = prepare(part.mesh, k, prims, err);
-      if (!buckets.has(k)) buckets.set(k, { pos: [], nrm: [], idx: [], base: 0 });
+      if (!buckets.has(k)) buckets.set(k, { pos: [], nrm: [], exp: [], idx: [], base: 0 });
       const b = buckets.get(k), base = b.pos.length / 3, v = [0, 0, 0], n = [0, 0, 0];
       for (let i = 0; i < g.pos.length; i += 3) {
         vec3.transformMat4(v, [g.pos[i], g.pos[i + 1], g.pos[i + 2]], M); b.pos.push(v[0], v[1], v[2]);
-        vec3.transformMat3(n, [g.nrm[i], g.nrm[i + 1], g.nrm[i + 2]], N); vec3.normalize(n, n); b.nrm.push(n[0], n[1], n[2]);
+        vec3.transformMat3(n, [g.nrm[i], g.nrm[i + 1], g.nrm[i + 2]], N); vec3.normalize(n, n); b.nrm.push(n[0], n[1], n[2]); b.exp.push(...part.exp);
       }
       for (let i = 0; i < g.idx.length; i += 3) {
         if (flip) b.idx.push(base + g.idx[i], base + g.idx[i + 2], base + g.idx[i + 1]);
@@ -147,11 +159,21 @@ for (const [k, b] of r.buckets) {
   const prim = doc.createPrimitive().setMaterial(mat)
     .setAttribute('POSITION', doc.createAccessor().setType('VEC3').setArray(new Float32Array(b.pos)).setBuffer(buf))
     .setAttribute('NORMAL', doc.createAccessor().setType('VEC3').setArray(new Float32Array(b.nrm)).setBuffer(buf))
+    .setAttribute('_EXPLODE', doc.createAccessor().setType('VEC4').setArray(new Float32Array(b.exp)).setBuffer(buf))
     .setIndices(doc.createAccessor().setType('SCALAR').setArray(new Uint32Array(b.idx)).setBuffer(buf));
   mesh.addPrimitive(prim);
 }
-doc.createScene().addChild(doc.createNode('robot').setMesh(mesh));
-await doc.transform(reorder({ encoder: MeshoptEncoder }), quantize({ quantizePosition: 14, quantizeNormal: 8 }));
+// label anchors: up to 6 instances per label, each [x,y,z, ox,oy,oz, delay] in model space
+const LABELS = [
+  ['Intake wheels', /WHEEL, FLEX/], ['Flywheels', /Rhino Wheel|Gecko Wheel/], ['Motors', /^5203 gearbox/],
+  ['Mecanum drive', /^Roller$|^Wheel Core$|3615-4008-0096 rubber/], ['Control Hub', /Control Hub/], ['Odometry', /32mm Omni Wheel/],
+  ['Webcam', /^Logitech_C920$/], ['Battery', /Slim Battery/],
+];
+const kept = parts.filter(p => p.diag >= MIN);
+const labels = LABELS.map(([t, re]) => ({ t, pts: kept.filter(p => re.test(p.name)).slice(0, 6).map(p => [...p.ctr, ...p.exp].map(v => +v.toFixed(4))) })).filter(l => l.pts.length);
+console.log('labels', labels.map(l => l.t + ':' + l.pts.length).join(', '));
+doc.createScene().addChild(doc.createNode('robot').setMesh(mesh).setExtras({ labels }));
+await doc.transform(reorder({ encoder: MeshoptEncoder }), quantize({ pattern: /^(POSITION|NORMAL)$/, quantizePosition: 14, quantizeNormal: 8 }));
 doc.createExtension(EXTMeshoptCompression).setRequired(true).setEncoderOptions({ method: EXTMeshoptCompression.EncoderMethod.FILTER });
 await io.write(OUT, doc);
 const { statSync } = await import('node:fs');
