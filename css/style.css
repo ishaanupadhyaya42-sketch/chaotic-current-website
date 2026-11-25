@@ -519,3 +519,10 @@ a.ph:hover img, .ph--hover:hover img { transform: scale(1.03); }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
+
+/* ---------- minimal pass: one heading per section, no eyebrows ---------- */
+.sec__h { margin-bottom: clamp(28px, 4vw, 48px); }
+.card h3 { font-size: clamp(26px, 2.6vw, 38px); }
+.card p { color: var(--muted); font-size: 16px; }
+.portal__text .lead { margin-top: 12px; font-family: var(--f-mono); font-size: 13px; letter-spacing: .04em; text-transform: uppercase; color: var(--on-ink-muted); }
+.reach__text .lead { margin-top: 16px; }

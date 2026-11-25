@@ -34,9 +34,10 @@
 
   function label(k) {
     const s = slides[k];
-    n.textContent = pad(k); count.textContent = `${pad(k)} / ${String(slides.length).padStart(2, '0')}`;
-    root.classList.remove('is-swapping'); void title.offsetWidth; root.classList.add('is-swapping');
-    title.textContent = s.title; text.textContent = s.text;
+    if (n) n.textContent = pad(k);
+    count.textContent = `${pad(k)} / ${String(slides.length).padStart(2, '0')}`;
+    if (title) title.textContent = s.title;
+    if (text) text.textContent = s.text;
     const nx = slides[(k + 1) % slides.length];
     gate.setAttribute('aria-label', `Step through to the next place: ${nx.title}`);
     gate.querySelector('.portal__cta span').textContent = nx.title;

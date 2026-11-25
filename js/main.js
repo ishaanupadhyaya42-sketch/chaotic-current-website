@@ -42,7 +42,9 @@ requestAnimationFrame(() => requestAnimationFrame(() => {
   const go = () => import(new URL('scene3d.js', SCRIPT_URL).href)
     .then((m) => m.mountScene(root))
     .catch(() => root.classList.add('is-failed'));
-  if (document.readyState === 'complete') go(); else addEventListener('load', go, { once: true });
+  // the robots sit at the bottom of the page: fetch three.js and the models only as the reader nears them
+  const io = new IntersectionObserver((en) => { if (en.some((e) => e.isIntersecting)) { io.disconnect(); go(); } }, { rootMargin: '150% 0px' });
+  io.observe(root);
 })();
 
 /* footer year */
