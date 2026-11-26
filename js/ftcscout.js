@@ -113,7 +113,7 @@
         : '<span class="fs-up">Upcoming</span>';
       return `<article class="fs-ev${st ? '' : ' is-upcoming'}">
         <header><time datetime="${e.event.start}">${fmtDate(e.event.start)}</time><h3><a href="${url}" target="_blank" rel="noopener">${esc(e.event.name)}</a></h3><p class="fs-meta">${meta}</p></header>
-        ${st ? matchTable(e.matches) : ''}
+        ${st && e.matches && e.matches.length ? `<details class="fs-more"><summary><span class="fs-open">View details</span><span class="fs-close">Hide details</span></summary>${matchTable(e.matches)}</details>` : ''}
       </article>`;
     }).join('') : '<p class="fs-none">No events listed yet.</p>';
 
