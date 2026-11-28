@@ -717,3 +717,11 @@ h3 { font-weight: 700; }
 .foot { background: var(--volt-deep); border-top: 0; }
 .bignum { font-family: var(--f-head); font-variation-settings: "wdth" 80; font-weight: 900; letter-spacing: 0; }
 @media (max-width: 599px) { .fs-ev { padding-left: 10px; border-left-width: 4px; } .fs-matches .fs-m { padding-left: 4px; } }
+
+/* team members without a photo yet: portfolio-style placeholder */
+.ph--empty { aspect-ratio: 4 / 5; display: grid; place-items: center; position: relative;
+  background: linear-gradient(150deg, var(--lav-2), #cdb4ff); }
+.ph--empty::before { content: ""; position: absolute; right: 10%; bottom: 12%; width: 46%; aspect-ratio: 66 / 20; background: var(--volt); opacity: .18;
+  -webkit-mask: var(--chev) center / contain no-repeat; mask: var(--chev) center / contain no-repeat; }
+.ph--empty span { font-family: var(--f-head); font-weight: 900; font-variation-settings: "wdth" 80; text-transform: uppercase;
+  font-size: clamp(56px, 8vw, 104px); color: var(--volt); letter-spacing: .02em; line-height: 1; }
